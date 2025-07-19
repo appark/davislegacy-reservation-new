@@ -1,0 +1,8 @@
+{% load messages_extras %}
+{% if messages %}
+    <script>
+        {% for message in messages %}
+            {{ message|parseMessage|safe }}
+        {% endfor %}
+    </script>
+{% endif %}

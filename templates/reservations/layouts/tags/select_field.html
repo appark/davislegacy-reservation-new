@@ -1,0 +1,12 @@
+{% load form_extras %}
+<div class="form-group form-group-default form-group-default-select2{% if required %} required{% endif %}{% if poptext %} pop-text-trigger{% endif %}{% if group_extras %} {{ group_extras }}{% endif %}">
+    <label>{{ label }}</label>
+    {% block select %}
+        <select{% if id %} id="{{ id }}"{% endif %} class="full-width" name="{{ field.name }}"{% if placeholder %} placeholder="{{ placeholder }}"{% endif %}{% if required %} required{% endif %} data-init-plugin="select2"{% if extras %} {{ extras }}{% endif %}>
+            {% for choice_value, choice_label in field.field.choices %}
+                <option value="{{ choice_value }}"{% if value|normalizeInput == choice_value|normalizeInput %} selected="selected"{% endif %}>{{ choice_label }}</option>
+            {% endfor %}
+        </select>
+    {% endblock %}
+</div>
+{% if poptext %}<p class="help-block pop-text">{{ poptext }}</p>{% endif %}

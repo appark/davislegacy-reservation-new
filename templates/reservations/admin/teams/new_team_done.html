@@ -1,0 +1,60 @@
+{% extends 'reservations/layouts/default.html' %}
+
+{% block title %}New Team | {% endblock %}
+
+{% block breadcrumbs %}
+<ul class="breadcrumb">
+    <li>Admin</li>
+    <li><a href="{% url 'all_teams' %}">Teams</a></li>
+    <li><a href="{% url 'new_team' %}" class="active">New Team</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">{{ team.fullname }} was created successfully!</div>
+            </div>
+            <div class="panel-body">
+                <p class="table-info">An email has been sent to you (and the team organizer) with the following information:</p>
+                <div class="table-responsive">
+                    <table class="table table-striped table-condensed table-details">
+                        <thead>
+                            <tr>
+                                <th>Details</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Team Name</strong></td>
+                                <td>{{ team.username }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Age</strong></td>
+                                <td>{% if profile.age %}{{ profile.age }}{% else %}No Age provided.{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gender</strong></td>
+                                <td>{% if profile.gender %}{{ profile.gender }}{% else %}No gender provided.{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Email</strong></td>
+                                <td>{% if team.email %}{{ team.email }}{% else %}No email provided.{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Password</strong></td>
+                                <td><em>{{ password }}{% if random %}</em> <span class="label label-default m-l-10">Randomly Generated Password</span>{% endif %}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+                <a href="{% url 'all_teams' %}" class="btn btn-default">Go Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

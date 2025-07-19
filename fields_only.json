@@ -1,0 +1,186 @@
+[
+{
+  "model": "reservations.field",
+  "pk": 3,
+  "fields": {
+    "active": true,
+    "name": "DLSC 7v7 1",
+    "teams": [
+      142,
+      141,
+      143,
+      132,
+      140,
+      136,
+      130,
+      137,
+      135,
+      131,
+      138,
+      139
+    ]
+  }
+},
+{
+  "model": "reservations.field",
+  "pk": 17,
+  "fields": {
+    "active": true,
+    "name": "DLSC 9v9 1",
+    "teams": [
+      113,
+      124,
+      112,
+      125,
+      121,
+      115,
+      129,
+      114,
+      126,
+      123,
+      127
+    ]
+  }
+},
+{
+  "model": "reservations.field",
+  "pk": 23,
+  "fields": {
+    "active": true,
+    "name": "DLSC 11v11 1",
+    "teams": [
+      108,
+      93,
+      109,
+      69,
+      57,
+      107,
+      68,
+      90,
+      59,
+      78,
+      56,
+      66,
+      92,
+      97,
+      89,
+      102,
+      106,
+      67,
+      65,
+      53,
+      98,
+      80,
+      99,
+      103,
+      82,
+      79,
+      91,
+      83,
+      110
+    ]
+  }
+},
+{
+  "model": "reservations.field",
+  "pk": 47,
+  "fields": {
+    "active": true,
+    "name": "DLSC 11v11 2",
+    "teams": [
+      108,
+      93,
+      109,
+      69,
+      57,
+      107,
+      68,
+      90,
+      59,
+      78,
+      56,
+      66,
+      92,
+      97,
+      89,
+      102,
+      106,
+      67,
+      65,
+      53,
+      98,
+      80,
+      99,
+      103,
+      82,
+      79,
+      91,
+      83,
+      110
+    ]
+  }
+},
+{
+  "model": "reservations.field",
+  "pk": 51,
+  "fields": {
+    "active": false,
+    "name": "Playfields",
+    "teams": []
+  }
+},
+{
+  "model": "reservations.field",
+  "pk": 53,
+  "fields": {
+    "active": true,
+    "name": "DLSC 7v7 2",
+    "teams": []
+  }
+},
+{
+  "model": "reservations.field",
+  "pk": 55,
+  "fields": {
+    "active": true,
+    "name": "DLSC 9v9 2",
+    "teams": []
+  }
+},
+{
+  "model": "reservations.field",
+  "pk": 56,
+  "fields": {
+    "active": false,
+    "name": "DLSC 11v11 4",
+    "teams": []
+  }
+},
+{
+  "model": "reservations.field",
+  "pk": 57,
+  "fields": {
+    "active": false,
+    "name": "DLSC 11v11 5",
+    "teams": []
+  }
+},
+{
+  "model": "reservations.field",
+  "pk": 58,
+  "fields": {
+    "active": false,
+    "name": "DLSC 11v11 6",
+    "teams": []
+  }
+},
+{
+  "model": "reservations.field",
+  "pk": 59,
+  "fields": {
+    "active": false,
+    "name": "DLSC 11v11 7",
+    "teams": []
+  }
+}
+]

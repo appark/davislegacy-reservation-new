@@ -1,0 +1,106 @@
+{% extends 'reservations/layouts/default.html' %}
+{% load static %}
+{% load form_extras %}
+
+{% block title %}Gametypes | {% endblock %}
+
+{% block addCSS %}
+    <link href="{% static 'assets/plugins/jquery-datatable/media/css/jquery.dataTables.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/jquery-datatable/extensions/FixedColumns/css/dataTables.fixedColumns.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/datatables-responsive/css/datatables.responsive.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block addJS %}
+    <script src="{% static 'assets/plugins/jquery-datatable/media/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/jquery-datatable/extensions/TableTools/js/dataTables.tableTools.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/jquery-datatable/extensions/Bootstrap/jquery-datatable-bootstrap.js' %}"></script>
+    <script src="{% static 'assets/plugins/datatables-responsive/js/datatables.responsive.js' %}"></script>
+    <script src="{% static 'assets/plugins/datatables-responsive/js/lodash.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/jquery-datatable/plugins/natural/natural.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+            var settings = {};
+            settings["emptyTable"] = "There are currently no gametypes.";
+            settings["columnDefs"] = [
+                { "orderable": false, "targets": [ 1 ] },
+                { "searchable": false, "targets": [ 1 ] },
+                { "type": "natural", "targets": [ 0 ] }
+            ];
+
+            settings["search"] = "#gametypes-search";
+            $("#gametypes").createDataTable(settings);
+        });
+    </script>
+{% endblock %}
+
+{% block breadcrumbs %}
+<ul class="breadcrumb">
+    <li>Admin</li>
+    <li><a href="{% url 'all_gametypes' %}" class="active">Gametypes</a></li>
+</ul>
+<div class="pull-right">
+    <button class="btn btn-default m-t-10" data-toggle="modal" data-target="#modal-new-gametype"><i class="fa fa-plus-circle"></i><span class="hidden-xs"> New Gametype</span></button>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">Gametypes</div>
+                <div class="table-search hidden-xs pull-right">
+                    <input type="text" id="gametypes-search" class="form-control input-sm" placeholder="&#xF002;">
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table id="gametypes" class="table table-striped table-condensed table-action-1">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for gametype in gametypes %}
+                                <tr>
+                                    <td>{{ gametype.type }}</td>
+                                    <td><a href="{% url 'delete_gametype' gametype_id=gametype.pk %}" class="btn btn-danger confirm" data-delete="{{ gametype.type }}" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block modals %}
+<div class="modal fade stick-up disable-scroll" id="modal-new-gametype" tabindex="-1" role="dialog" aria-labelledby="New Gametype Dialog" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content-wrapper">
+            <div class="modal-content">
+                <div class="modal-header clearfix text-left">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i></button>
+                    <h5>Add a New Gametype</h5>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{% url 'new_gametype' %}">
+                        {% csrf_token %}
+                        {% textField form.type required=True label="Type" placeholder="Gametype" %}
+                        <div class="row">
+                            <div class="col-md-offset-10 col-md-2">
+                                <button type="submit" class="btn btn-block btn-primary">Create</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'reservations/layouts/default.html' %}
+{% load static %}
+{% load form_extras %}
+
+{% block title %}{% if team %}Edit{% else %}New{% endif %} Team | {% endblock %}
+
+{% block addCSS %}
+    <link href="{% static 'assets/plugins/bootstrap-select2/select2.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block addJS %}
+    <script src="{% static 'assets/plugins/bootstrap-select2/select2.min.js' %}"></script>
+{% endblock %}
+
+{% block breadcrumbs %}
+<ul class="breadcrumb">
+    <li>Admin</li>
+    <li><a href="{% url 'all_teams' %}">Teams</a></li>
+    <li><a href="{% url 'new_team' %}" class="active">New Team</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">{% if team %}Editing {{ team.fullname }}{% else %}Create a New Team{% endif %}</div>
+            </div>
+            <div class="panel-body">
+                <form method="post" action="{% if team %}{% url 'edit_team' team_id=team.pk %}{% else %}{% url 'new_team' %}{% endif %}">
+                    {% csrf_token %}
+                    {% textField form.username required=True label="Team Name" placeholder="Name" poptext='This will be used as the team&rsquo;s login username. It cannot have spaces or unusual characters. It can contain numbers, letters, and the following characters: <span class="label label-default">@</span> <span class="label label-default">.</span> <span class="label label-default">+</span> <span class="label label-default">-</span> <span class="label label-default">_</span>' %}
+                    {% textField form.description label="Description (Optional)" placeholder="Description" %}
+                    {% emailField form.email label="Email (Optional)" placeholder="hello@example.com" %}
+                    {% textField form.age required=True label="Age" placeholder="15"  %}
+                    {% selectField form.gender required=True label="Gender" %}
+
+                    {% if team %}
+                        {% passwordField form.password label="Change Password (Optional)" placeholder="Password" poptext='<strong>Warning!</strong> Changing this password may prevent the team organizer from logging into their account!' %}
+                    {% else %}
+                        {% passwordField form.password label="Password (Optional)" placeholder="Password" %}
+                    {% endif %}
+
+                    <hr>
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-primary">{% if team %}Change{% else %}Create{% endif %}</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

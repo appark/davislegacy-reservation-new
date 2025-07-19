@@ -1,0 +1,14 @@
+{% extends 'registration/default.html' %}
+
+{% block title %}Logout | {% endblock %}
+
+{% block content %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">Successfully logged out!</div>
+    </div>
+    <div class="panel-body">
+        <p class="standalone"><a href="{% url 'dashboard' %}">Click here to get back to the dashboard.</a></p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,200 @@
+[
+  {
+    "model": "reservations.tournament",
+    "pk": 405,
+    "fields": {
+      "active": true,
+      "name": "Real Madrid Camp",
+      "start_date": "2025-06-16",
+      "end_date": "2025-06-20",
+      "gametype": null
+    }
+  },
+  {
+    "model": "reservations.tournament",
+    "pk": 406,
+    "fields": {
+      "active": true,
+      "name": "Legacy Summer Camp #1",
+      "start_date": "2025-06-23",
+      "end_date": "2025-06-27",
+      "gametype": null
+    }
+  },
+  {
+    "model": "reservations.tournament",
+    "pk": 407,
+    "fields": {
+      "active": true,
+      "name": "Davis Legacy College Showcase - Girls",
+      "start_date": "2025-07-11",
+      "end_date": "2025-07-14",
+      "gametype": null
+    }
+  },
+  {
+    "model": "reservations.tournament",
+    "pk": 408,
+    "fields": {
+      "active": true,
+      "name": "Davis Legacy College Showcase - Boys",
+      "start_date": "2025-07-25",
+      "end_date": "2025-07-28",
+      "gametype": null
+    }
+  },
+  {
+    "model": "reservations.tournament",
+    "pk": 409,
+    "fields": {
+      "active": true,
+      "name": "Legacy Summer Camp #2",
+      "start_date": "2025-08-04",
+      "end_date": "2025-08-08",
+      "gametype": null
+    }
+  },
+  {
+    "model": "reservations.tournament",
+    "pk": 410,
+    "fields": {
+      "active": true,
+      "name": "Davis Legacy Summer Super Clasico",
+      "start_date": "2025-08-09",
+      "end_date": "2025-08-10",
+      "gametype": null
+    }
+  },
+  {
+    "model": "reservations.tournament",
+    "pk": 412,
+    "fields": {
+      "active": true,
+      "name": "NorCal NPL Event*",
+      "start_date": "2025-08-16",
+      "end_date": "2025-08-17",
+      "gametype": null
+    }
+  },
+  {
+    "model": "reservations.tournament",
+    "pk": 413,
+    "fields": {
+      "active": true,
+      "name": "Labor Day Super Cup",
+      "start_date": "2025-08-30",
+      "end_date": "2025-09-01",
+      "gametype": null
+    }
+  },
+  {
+    "model": "reservations.tournament",
+    "pk": 414,
+    "fields": {
+      "active": true,
+      "name": "Barefoot on the Pitch",
+      "start_date": "2025-09-13",
+      "end_date": "2025-09-13",
+      "gametype": null
+    }
+  },
+  {
+    "model": "reservations.tournament",
+    "pk": 415,
+    "fields": {
+      "active": true,
+      "name": "Davis Legacy Premier Cup",
+      "start_date": "2025-09-27",
+      "end_date": "2025-09-28",
+      "gametype": null
+    }
+  },
+  {
+    "model": "reservations.tournament",
+    "pk": 416,
+    "fields": {
+      "active": true,
+      "name": "Northern California Special Olympics",
+      "start_date": "2025-10-11",
+      "end_date": "2025-10-11",
+      "gametype": null
+    }
+  },
+  {
+    "model": "reservations.tournament",
+    "pk": 417,
+    "fields": {
+      "active": true,
+      "name": "NorCal U9 State Cup",
+      "start_date": "2025-10-18",
+      "end_date": "2025-10-19",
+      "gametype": null
+    }
+  },
+  {
+    "model": "reservations.tournament",
+    "pk": 418,
+    "fields": {
+      "active": true,
+      "name": "NorCal U10 State Cup and NorCal Super Rec Cup (Older)",
+      "start_date": "2025-11-01",
+      "end_date": "2025-11-02",
+      "gametype": null
+    }
+  },
+  {
+    "model": "reservations.tournament",
+    "pk": 419,
+    "fields": {
+      "active": true,
+      "name": "NorCal U9 State Cup",
+      "start_date": "2025-11-08",
+      "end_date": "2025-11-09",
+      "gametype": null
+    }
+  },
+  {
+    "model": "reservations.tournament",
+    "pk": 420,
+    "fields": {
+      "active": true,
+      "name": "NorCal NPL Fall College Showcase - Girls",
+      "start_date": "2025-11-15",
+      "end_date": "2025-11-16",
+      "gametype": null
+    }
+  },
+  {
+    "model": "reservations.tournament",
+    "pk": 421,
+    "fields": {
+      "active": true,
+      "name": "NorCal NPL Fall College Showcase - Boys",
+      "start_date": "2025-11-22",
+      "end_date": "2025-11-23",
+      "gametype": null
+    }
+  },
+  {
+    "model": "reservations.tournament",
+    "pk": 422,
+    "fields": {
+      "active": true,
+      "name": "NorCal Recreational Program Event (Younger)",
+      "start_date": "2025-12-06",
+      "end_date": "2025-12-07",
+      "gametype": null
+    }
+  },
+  {
+    "model": "reservations.tournament",
+    "pk": 423,
+    "fields": {
+      "active": true,
+      "name": "Winter Camp",
+      "start_date": "2025-12-29",
+      "end_date": "2026-01-01",
+      "gametype": null
+    }
+  }
+]

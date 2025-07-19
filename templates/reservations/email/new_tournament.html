@@ -1,0 +1,9 @@
+You are receiving this email because a new tournament has been made.
+
+Tournament Details:
+=====================
+Name: {{ tournament.name }}
+Locations: {{ tournament.locations.all|join:", " }}
+Dates: {{ tournament.start_date|date:'N j, Y' }} - {{ tournament.end_date|date:'N j, Y' }}
+
+- The {% load setting_extras %}{% getSetting "SITE_NAME" as site_name %}{{ site_name }} Team

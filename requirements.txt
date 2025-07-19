@@ -1,0 +1,9 @@
+Django>=5.2
+gunicorn
+psycopg2-binary
+whitenoise>=6.8.0
+natsort
+pytz
+python-dateutil
+unicodecsv
+djangorestframework>=3.14

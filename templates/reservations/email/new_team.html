@@ -1,0 +1,11 @@
+Welcome to {% load setting_extras %}{% getSetting "SITE_NAME" as site_name %}{{ site_name }}!
+
+Your new team is: {{ team.username }}
+A temporary password has been created for you to login to your account: {{ password }}
+
+Visit the following link to login and start making reservations:
+{% getSetting "SITE_DOMAIN" as site_domain %}{{ site_domain }}{{ link }}
+
+Don't forget to change your password!
+
+- The {{ site_name }} Team

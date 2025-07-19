@@ -1,0 +1,54 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    container_name: reservation-new-web
+    command: gunicorn demo2.wsgi:application --bind 0.0.0.0:3001
+    restart: always
+    environment:
+      - DEBUG=True
+      - ALLOWED_HOSTS=dev.davislegacysoccer.org,localhost,127.0.0.1
+      - CSRF_TRUSTED_ORIGINS=https://dev.davislegacysoccer.org,https://localhost
+    volumes:
+      - .:/app
+      - /etc/localtime:/etc/localtime:ro
+    depends_on:
+      - db
+    networks:
+      - saltbox
+    labels:
+      com.github.saltbox.saltbox_managed: true
+      traefik.enable: true
+      traefik.http.routers.reservation-new-http.entrypoints: web
+      traefik.http.routers.reservation-new-http.middlewares: globalHeaders@file,redirect-to-https,gzip
+      traefik.http.routers.reservation-new-http.rule: Host(`dev.davislegacysoccer.org`)
+      traefik.http.routers.reservation-new-http.service: reservation-new
+      traefik.http.routers.reservation-new.entrypoints: websecure
+      traefik.http.routers.reservation-new.middlewares: globalHeaders@file,secureHeaders@file
+      traefik.http.routers.reservation-new.rule: Host(`dev.davislegacysoccer.org`)
+      traefik.http.routers.reservation-new.service: reservation-new
+      traefik.http.routers.reservation-new.tls.certresolver: cfdns
+      traefik.http.routers.reservation-new.tls.options: securetls@file
+      traefik.http.services.reservation-new.loadbalancer.server.port: 3001
+
+  db:
+    image: postgres:15
+    container_name: reservation-new-db
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=demo2_db
+      - POSTGRES_USER=demo2_user
+      - POSTGRES_PASSWORD=demo2_pass
+    networks:
+      - saltbox
+    labels:
+      com.github.saltbox.saltbox_managed: true
+
+volumes:
+  pgdata:
+
+networks:
+  saltbox:
+    external: true

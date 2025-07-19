@@ -1,0 +1,112 @@
+{% load navigation_extras %}
+<div class="page-sidebar" data-pages="sidebar">
+    <div class="sidebar-header">
+        <span class="sidebar-logo"><a href="{% url 'dashboard' %}">{{ site_name }}</a></span>
+        <div class="sidebar-header-controls hidden-xs hidden-sm">
+            <button data-toggle-pin="sidebar" class="btn btn-link btn-toggle-sidebar" type="button"><i class="fa fs-12"></i></button>
+        </div>
+    </div>
+    <div class="sidebar-menu">
+        <ul class="menu-items">
+            <li class="m-t-30{% active '(^/$)|(^/reservation/)|(^/tournament/)' %} active{% endactive %}">
+                {% resvCount as count %}
+                {% if count|add:0 > 0 %}
+                    <a href="{% url 'dashboard' %}" class="detailed">
+                        <span class="title">Dashboard</span>
+                        {% if is_superuser %}
+                            <span class="details"><strong>{{ count }}</strong> Pending Reservation{% if count|add:0 != 1 %}s{% endif %}</span>
+                        {% else %}
+                            <span class="details"><strong>{{ count }}</strong> Current Reservation{% if count|add:0 != 1 %}s{% endif %}</span>
+                        {% endif %}
+                    </a>
+                {% else %}
+                    <a href="{% url 'dashboard' %}">
+                        <span class="title">Dashboard</span>
+                    </a>
+                {% endif %}
+                <span class="icon-thumbnail"><i class="fa fa-calendar"></i></span>
+            </li>
+            {% if is_superuser %}
+                <li{% active '(^/admin/)|(^/editor/)|(^/account/)' %} class="active open"{% endactive %}>
+                    <a href="#" class="toggle-link">
+                        <span class="title">Admin</span>
+                        <span class="arrow{% active '(^/admin/)|(^/editor/)|(^/account/)' %} open{% endactive %}"></span>
+                    </a>
+                    <span class="icon-thumbnail"><i class="fa fa-university"></i></span>
+                    <ul class="sub-menu">
+                        <li{% active '(^/admin/$)|(^/editor/)|(^/admin/swap/)' %} class="active"{% endactive %}>
+                            <a href="{% url 'all_reservations' %}">All Reservations</a>
+                            <span class="icon-thumbnail"><i class="fa fa-book"></i></span>
+                        </li>
+                        <li{% active '^/admin/fields/' %} class="active"{% endactive %}>
+                            <a href="{% url 'all_fields' %}">Fields</a>
+                            <span class="icon-thumbnail"><i class="fa fa-map"></i></span>
+                        </li>
+                        <li{% active '^/admin/teams/' %} class="active"{% endactive %}>
+                            <a href="{% url 'all_teams' %}">Teams</a>
+                            <span class="icon-thumbnail"><i class="fa fa-users"></i></span>
+                        </li>
+                        <li{% active '^/admin/tournaments/' %} class="active"{% endactive %}>
+                            <a href="{% url 'all_tournaments' %}">Tournaments</a>
+                            <span class="icon-thumbnail"><i class="fa fa-trophy"></i></span>
+                        </li>
+                        <li{% active '^/admin/gametypes/$' %} class="active"{% endactive %}>
+                            <a href="{% url 'all_gametypes' %}">Gametypes</a>
+                            <span class="icon-thumbnail"><i class="fa fa-futbol-o"></i></span>
+                        </li>
+                        <li{% active '^/admin/managers/$' %} class="active"{% endactive %}>
+                            <a href="{% url 'all_managers' %}">Superusers</a>
+                            <span class="icon-thumbnail"><i class="fa fa-star"></i></span>
+                        </li>
+                        <li{% active '(^/admin/settings/$)|(^/admin/recovery/$)' %} class="active"{% endactive %}>
+                            <a href="{% url 'website_settings' %}">Website Settings</a>
+                            <span class="icon-thumbnail"><i class="fa fa-sliders"></i></span>
+                        </li>
+                        <li>
+                            <a href="{% url 'admin:index' %}" target="_blank">Django Admin</a>
+                            <span class="icon-thumbnail"><i class="fa fa-terminal"></i></span>
+                        </li>
+                        <li{% active '^/account/$' %} class="active"{% endactive %}>
+                            <a href="{% url 'account' %}"><span class="title">Account Settings</span></a>
+                            <span class="icon-thumbnail"><i class="fa fa-cog"></i></span>
+                        </li>
+                    </ul>
+                </li>
+            {% elif is_authenticated %}
+                <li{% active '(^/mine/$)|(^/editor/)|(^/account/$)' %} class="active"{% endactive %}>
+                    <a href="#" class="toggle-link">
+                        <span class="title">My Team</span>
+                        <span class="arrow{% active '(^/mine/$)|(^/editor/)|(^/account/$)' %} open{% endactive %}"></span>
+                    </a>
+                    <span class="icon-thumbnail"><i class="fa fa-users"></i></span>
+                    <ul class="sub-menu">
+                        <li{% active '(^/mine/$)|(^/editor/)' %} class="active"{% endactive %}>
+                            <a href="{% url 'my_reservations' %}">My Reservations</a>
+                            <span class="icon-thumbnail"><i class="fa fa-clock-o"></i></span>
+                        </li>
+                        <li{% active '^/account/$' %} class="active"{% endactive %}>
+                            <a href="{% url 'account' %}">Account Settings</a>
+                            <span class="icon-thumbnail"><i class="fa fa-cog"></i></span>
+                        </li>
+                    </ul>
+                </li>
+            {% endif %}
+            {% if is_authenticated %}
+                <li>
+                    <a href="{% url 'logout' %}">
+                        <span class="title">Logout</span>
+                    </a>
+                    <span class="icon-thumbnail"><i class="fa fa-sign-out"></i></span>
+                </li>
+            {% else %}
+                <li>
+                    <a href="{% url 'login' %}">
+                        <span class="title">Login</span>
+                    </a>
+                    <span class="icon-thumbnail"><i class="fa fa-sign-in"></i></span>
+                </li>
+            {% endif %}
+            <div class="clearfix"></div>
+        </ul>
+    </div>
+</div>

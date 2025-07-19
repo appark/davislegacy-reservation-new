@@ -1,0 +1,57 @@
+[
+  {
+    "model": "reservations.websitesetting",
+    "pk": 1,
+    "fields": {
+      "key": "CALENDAR_RANGE_START",
+      "description": "Start Day for the Calendar",
+      "value": "0"
+    }
+  },
+  {
+    "model": "reservations.websitesetting",
+    "pk": 2,
+    "fields": {
+      "key": "CALENDAR_RANGE_END",
+      "description": "End Day for the Calendar",
+      "value": "6"
+    }
+  },
+  {
+    "model": "reservations.websitesetting",
+    "pk": 3,
+    "fields": {
+      "key": "RESERVATION_TOKEN_TIMEOUT",
+      "description": "Timeout (in minutes) to make a reservation.",
+      "value": "10"
+    }
+  },
+  {
+    "model": "reservations.websitesetting",
+    "pk": 4,
+    "fields": {
+      "key": "LAST_CLEAN_DATE",
+      "description": "The date of the last cleaning task.",
+      "value": "03/17/2018"
+    }
+  },
+  {
+    "model": "reservations.websitesetting",
+    "pk": 5,
+    "fields": {
+      "key": "BLOCK_START_DAY",
+      "description": "The reservation block start day. After this time, a team will no longer be able to change their reservations for the following weekend.",
+      "value": "0"
+    }
+  },
+  {
+    "model": "reservations.websitesetting",
+    "pk": 6,
+    "fields": {
+      "key": "BLOCK_START_TIME",
+      "description": "The reservation block start time. After this time, a team will no longer be able to change their reservations for the following weekend.",
+      "value": "00:00:00"
+    }
+  }
+]
+

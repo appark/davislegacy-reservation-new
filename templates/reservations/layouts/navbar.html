@@ -1,0 +1,63 @@
+{% load navigation_extras %}
+<div class="header">
+    <!-- START MOBILE NAVBAR -->
+    <div class="container-fluid relative">
+        <div class="pull-left full-height visible-sm visible-xs">
+            <div class="header-inner">
+                <a href="#" class="btn-link toggle-sidebar visible-sm-inline-block visible-xs-inline-block m-t-5 padding-5" data-toggle="sidebar">
+                    <span class="icon-set menu-hambuger"></span>
+                </a>
+            </div>
+        </div>
+        <div class="pull-center hidden-md hidden-lg">
+            <div class="header-inner">
+                <div class="brand inline">
+                    <span class="mobile-navbar-logo"><a href="{% url 'dashboard' %}"></a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MOBILE NAVBAR -->
+    <!-- START PRIMARY NAVBAR -->
+    <div class=" pull-left sm-table hidden-xs hidden-sm">
+        <div class="header-inner">
+            <div class="brand inline">
+                <span class="navbar-logo"><a href="#"></a></span>
+            </div>
+        </div>
+    </div>
+    <div class="pull-right">
+        <div class="visible-lg visible-md m-t-10">
+            {% if is_authenticated %}
+                <div class="pull-left p-r-10 p-t-10 fs-16 font-heading">
+                    <span class="semi-bold">{{ request.user.username|title }}</span>
+                </div>
+                <div class="dropdown pull-right">
+                    <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="avatar" style="background-color: {{ colorizer }};">{{ request.user.username|firstLetter }}</span>
+                    </button>
+                    <ul class="dropdown-menu profile-dropdown" role="menu">
+                        {% if is_superuser %}
+                            <li><a href="{% url 'all_reservations' %}"><i class="fa fa-book"></i> All Reservations</a></li>
+                        {% else %}
+                            <li><a href="{% url 'my_reservations' %}"><i class="fa fa-book"></i> My Reservations</a></li>
+                        {% endif %}
+                        <li><a href="{% url 'account' %}"><i class="fa fa-cog"></i> Settings</a></li>
+                        <li class="bg-master-lighter">
+                            <form method="post" action="{% url 'logout' %}" style="display: inline; width: 100%;">
+                                {% csrf_token %}
+                                <button type="submit" class="clearfix" style="background: none; border: none; color: inherit; cursor: pointer; padding: 8px 15px; font: inherit; width: 100%; text-align: left; display: block;">
+                                    <span class="pull-left">Logout</span>
+                                    <span class="pull-right"><i class="fa fa-power-off"></i></span>
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn btn-default btn-login"><i class="fa fa-sign-in"></i> Login</a>
+            {% endif %}
+        </div>
+    </div>
+    <!-- END PRIMARY NAVBAR -->
+</div>

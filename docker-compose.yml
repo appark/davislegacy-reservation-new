@@ -1,0 +1,92 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    container_name: reservation-new-web
+    command: gunicorn demo2.wsgi:application --bind 0.0.0.0:3001
+    restart: always
+    env_file:
+      - .env
+    environment:
+      # Django settings
+      - DEBUG=${DEBUG:-False}
+      - SECRET_KEY=${SECRET_KEY}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-dev.davislegacysoccer.org,localhost,127.0.0.1}
+      - CSRF_TRUSTED_ORIGINS=${CSRF_TRUSTED_ORIGINS:-https://dev.davislegacysoccer.org,https://localhost}
+      
+      # Database configuration
+      - DB_NAME=${DB_NAME:-demo2_db}
+      - DB_USER=${DB_USER:-demo2_user}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST:-db}
+      - DB_PORT=${DB_PORT:-5432}
+      
+      # Email configuration (optional)
+      - EMAIL_HOST=${EMAIL_HOST:-smtp.gmail.com}
+      - EMAIL_HOST_USER=${EMAIL_HOST_USER:-}
+      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD:-}
+      - EMAIL_PORT=${EMAIL_PORT:-587}
+      - EMAIL_USE_TLS=${EMAIL_USE_TLS:-True}
+    volumes:
+      - .:/app
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+      - /etc/localtime:/etc/localtime:ro
+    depends_on:
+      - db
+    networks:
+      - saltbox
+    labels:
+      com.github.saltbox.saltbox_managed: true
+      traefik.enable: true
+      traefik.http.routers.reservation-new-http.entrypoints: web
+      traefik.http.routers.reservation-new-http.middlewares: globalHeaders@file,redirect-to-https,gzip
+      traefik.http.routers.reservation-new-http.rule: Host(`dev.davislegacysoccer.org`)
+      traefik.http.routers.reservation-new-http.service: reservation-new
+      traefik.http.routers.reservation-new.entrypoints: websecure
+      traefik.http.routers.reservation-new.middlewares: globalHeaders@file,secureHeaders@file
+      traefik.http.routers.reservation-new.rule: Host(`dev.davislegacysoccer.org`)
+      traefik.http.routers.reservation-new.service: reservation-new
+      traefik.http.routers.reservation-new.tls.certresolver: cfdns
+      traefik.http.routers.reservation-new.tls.options: securetls@file
+      traefik.http.services.reservation-new.loadbalancer.server.port: 3001
+
+  db:
+    image: postgres:15
+    container_name: reservation-new-db
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_DB=${DB_NAME:-demo2_db}
+      - POSTGRES_USER=${DB_USER:-demo2_user}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - pgbackup:/backup
+      - ./backups:/host_backups
+    networks:
+      - saltbox
+    labels:
+      com.github.saltbox.saltbox_managed: true
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-demo2_user} -d ${DB_NAME:-demo2_db}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pgdata:
+    driver: local
+  pgbackup:
+    driver: local
+  static_volume:
+    driver: local
+  media_volume:
+    driver: local
+
+networks:
+  saltbox:
+    external: true

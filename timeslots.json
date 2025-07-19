@@ -1,0 +1,343 @@
+[
+{
+  "model": "reservations.timeslot",
+  "pk": 53,
+  "fields": {
+    "active": true,
+    "start_time": "08:00:00",
+    "end_time": "09:30:00",
+    "location": 17,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 54,
+  "fields": {
+    "active": true,
+    "start_time": "09:30:00",
+    "end_time": "11:00:00",
+    "location": 17,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 55,
+  "fields": {
+    "active": true,
+    "start_time": "11:00:00",
+    "end_time": "12:30:00",
+    "location": 17,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 56,
+  "fields": {
+    "active": true,
+    "start_time": "12:30:00",
+    "end_time": "14:00:00",
+    "location": 17,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 57,
+  "fields": {
+    "active": true,
+    "start_time": "14:00:00",
+    "end_time": "15:30:00",
+    "location": 17,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 60,
+  "fields": {
+    "active": true,
+    "start_time": "08:15:00",
+    "end_time": "09:45:00",
+    "location": 3,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 61,
+  "fields": {
+    "active": true,
+    "start_time": "09:45:00",
+    "end_time": "11:15:00",
+    "location": 3,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 62,
+  "fields": {
+    "active": true,
+    "start_time": "11:15:00",
+    "end_time": "12:45:00",
+    "location": 3,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 63,
+  "fields": {
+    "active": true,
+    "start_time": "12:45:00",
+    "end_time": "14:15:00",
+    "location": 3,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 64,
+  "fields": {
+    "active": true,
+    "start_time": "14:15:00",
+    "end_time": "15:45:00",
+    "location": 3,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 65,
+  "fields": {
+    "active": true,
+    "start_time": "15:45:00",
+    "end_time": "17:15:00",
+    "location": 3,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 759,
+  "fields": {
+    "active": true,
+    "start_time": "08:00:00",
+    "end_time": "10:00:00",
+    "location": 23,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 760,
+  "fields": {
+    "active": true,
+    "start_time": "10:00:00",
+    "end_time": "12:00:00",
+    "location": 23,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 761,
+  "fields": {
+    "active": true,
+    "start_time": "12:00:00",
+    "end_time": "14:00:00",
+    "location": 23,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 762,
+  "fields": {
+    "active": true,
+    "start_time": "14:00:00",
+    "end_time": "16:00:00",
+    "location": 23,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 763,
+  "fields": {
+    "active": true,
+    "start_time": "16:00:00",
+    "end_time": "18:00:00",
+    "location": 23,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 764,
+  "fields": {
+    "active": true,
+    "start_time": "08:00:00",
+    "end_time": "10:00:00",
+    "location": 47,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 765,
+  "fields": {
+    "active": true,
+    "start_time": "10:00:00",
+    "end_time": "12:00:00",
+    "location": 47,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 766,
+  "fields": {
+    "active": true,
+    "start_time": "12:00:00",
+    "end_time": "14:00:00",
+    "location": 47,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 767,
+  "fields": {
+    "active": true,
+    "start_time": "14:00:00",
+    "end_time": "16:00:00",
+    "location": 47,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 768,
+  "fields": {
+    "active": true,
+    "start_time": "16:00:00",
+    "end_time": "18:00:00",
+    "location": 47,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 945,
+  "fields": {
+    "active": false,
+    "start_time": "08:00:00",
+    "end_time": "10:00:00",
+    "location": 51,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 1010,
+  "fields": {
+    "active": true,
+    "start_time": "08:15:00",
+    "end_time": "09:45:00",
+    "location": 53,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 1011,
+  "fields": {
+    "active": true,
+    "start_time": "09:45:00",
+    "end_time": "11:15:00",
+    "location": 53,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 1013,
+  "fields": {
+    "active": true,
+    "start_time": "12:45:00",
+    "end_time": "14:15:00",
+    "location": 53,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 1014,
+  "fields": {
+    "active": true,
+    "start_time": "11:15:00",
+    "end_time": "12:45:00",
+    "location": 53,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 1015,
+  "fields": {
+    "active": true,
+    "start_time": "14:15:00",
+    "end_time": "15:45:00",
+    "location": 53,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 1016,
+  "fields": {
+    "active": true,
+    "start_time": "15:45:00",
+    "end_time": "17:15:00",
+    "location": 53,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 1038,
+  "fields": {
+    "active": true,
+    "start_time": "15:30:00",
+    "end_time": "17:00:00",
+    "location": 17,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 1039,
+  "fields": {
+    "active": true,
+    "start_time": "11:00:00",
+    "end_time": "12:30:00",
+    "location": 55,
+    "overlap": []
+  }
+},
+{
+  "model": "reservations.timeslot",
+  "pk": 1078,
+  "fields": {
+    "active": false,
+    "start_time": "19:00:00",
+    "end_time": "20:30:00",
+    "location": 17,
+    "overlap": []
+  }
+}
+]

@@ -1,0 +1,100 @@
+{% extends 'reservations/layouts/default.html' %}
+{% load static %}
+{% load form_extras %}
+
+{% block title %}Swap | {% endblock %}
+
+{% block addCSS %}
+    <link href="{% static 'assets/plugins/bootstrap-select2/select2.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block addJS %}
+    <script src="{% static 'assets/plugins/bootstrap-select2/select2.min.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+            var checkOptions = function() {
+                // Clear previously selected options when they change options.
+                var prevSelected = $(this).data("prev-selected");
+                if(prevSelected) {
+                    $("select.swap-select option[value='" + prevSelected + "']").removeAttr("disabled");
+                    $(this).data("prev-selected", null);
+                }
+
+                var value = $(this).val();
+                if(value) {
+                    $("select.swap-select").not(this).children("option[value='" + value + "']").attr("disabled", "disabled");
+                    $(this).data("prev-selected", value);
+                }
+            }
+            $("select.swap-select").change(checkOptions);
+            $("select.swap-select").each(checkOptions);
+
+            window.onbeforeunload = function() {
+                $.ajax({
+                    type: "GET",
+                    url: "{% url 'api_clear_tokens' %}",
+                    async: false
+                });
+            };
+
+            $(".swap-submit").click(function() {
+                window.onbeforeunload = null;
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block breadcrumbs %}
+<ul class="breadcrumb">
+    <li>Admin</li>
+    <li><a href="#" class="active">Swap Timeslots</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">Swap Timeslots</div>
+            </div>
+            <div class="panel-body">
+                <form method="post" action="{% url 'swap_reservations' %}?{{ request.GET.urlencode }}">
+                    {% csrf_token %}
+                    <div class="table-responsive">
+                        <table class="table table-striped table-condensed table-swap">
+                            <tbody>
+                                {% for reservation in reservations %}
+                                <tr>
+                                    <td>
+                                        <p><strong>{{ reservation.team.fullname }}</strong></p>
+                                        <p>{{ reservation.timeslot.start_time }} - {{ reservation.timeslot.end_time }} @ {{ reservation.location }} on {{ reservation.date }}</p>
+                                    </td>
+                                    <td><i class="fa fa-fw fa-arrow-right"></i></td>
+                                    <td>
+                                        <div class="form-group form-group-default form-group-solo form-group-default-select2 required">
+                                            <label>Change Timeslot To...</label>
+                                            <select class="swap-select full-width" name="swap-with-{{ reservation.pk }}" required data-init-plugin="select2">
+                                                <option value="">---------</option>
+                                                {% for sub_reservation in reservations %}
+                                                    <option value="{{ sub_reservation.pk }}"{% if reservations.count == 2 and sub_reservation != reservation %}selected="selected"{% endif %}>{{ sub_reservation.timeslot.start_time }} - {{ sub_reservation.timeslot.end_time }} @ {{ sub_reservation.location }} on {{ sub_reservation.date }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr>
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-primary swap-submit">Confirm Swap</button>
+                    </div>
+                </form>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

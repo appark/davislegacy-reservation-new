@@ -1,0 +1,145 @@
+{% extends 'reservations/layouts/default.html' %}
+{% load static %}
+{% load form_extras %}
+
+{% block title %}{% if type == "new" %}New Reservation{% else %}Edit Reservation{% endif %} | {% endblock %}
+
+{% block addCSS %}
+    <link href="{% static 'assets/plugins/switchery/css/switchery.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/bootstrap-select2/select2.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block addJS %}
+    <script src="{% static 'assets/plugins/switchery/js/switchery.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/bootstrap-select2/select2.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/bootstrap-timepicker/bootstrap-timepicker.min.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+            if($("#custom-timeslot-toggle").is(":checked")) {
+                $("#timeslots").hide(100);
+            } else {
+                $("#timeslots").show(100);
+            }
+            $("#custom-timeslot-toggle").change(function() {
+                if($(this).is(":checked")) {
+                    $("#timeslots").hide(100);
+                } else {
+                    $("#timeslots").show(100);
+                }
+            });
+            $("#start-time").focus(function() {
+                $("#start-time").timepicker("showWidget");
+            });
+            $("#end-time").focus(function() {
+                $("#end-time").timepicker("showWidget");
+            });
+
+            window.onbeforeunload = function() {
+                $.ajax({
+                    type: "GET",
+                    url: "{% url 'api_clear_tokens' %}",
+                    async: false
+                });
+            };
+
+            var preventUnload = function() {
+                window.onbeforeunload = null;
+            };
+
+            $(".editor-submit").click(preventUnload);
+            $(".btn-back").click(preventUnload);
+        });
+    </script>
+{% endblock %}
+
+{% block breadcrumbs %}
+<ul class="breadcrumb">
+    {% if is_superuser %}<li>Admin</li>{% else %}<li>My Team</li>{% endif %}
+    <li><a href="{% url 'editor_step2' %}" class="active">{% if type == "new" %}New Reservation{% else %}Edit Reservation{% endif %}</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">Choose an Avaliable Timeslot</div>
+            </div>
+            <div class="panel-body">
+                <form method="post" action="{% url 'editor_step2' %}">
+                    {% csrf_token %}
+                    <div id="timeslots">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-condensed table-timeslots">
+                                <thead>
+                                    <tr>
+                                        <th>Field</th>
+                                        <th>Timeslots</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for field, timeslots in form.timeslot_choices.items %}
+                                        <tr>
+                                            <td><strong>{{ field.name }}</strong></td>
+                                            <td>
+                                                <ul class="timeslots-list">
+                                                    {% for timeslot in timeslots %}
+                                                        <li>
+                                                            <div class="radio radio-primary">
+                                                                <input id="timeslot-{{ timeslot.pk }}" type="radio" name="{{ form.timeslot.name }}" value="{{ timeslot.pk }}"{% if form.timeslot.value|add:0 == timeslot.pk|add:0 %} checked{% endif %}>
+                                                                <label class="timeslot" for="timeslot-{{ timeslot.pk }}"><span>{{ timeslot.start_time|time:"g:i A" }}</span> - <span>{{ timeslot.end_time|time:"g:i A" }}</span>{% if not timeslot.active %} <span class="label label-default">Custom</span>{% endif %}</label>
+                                                            </div>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    {% empty %}
+                                        <td class="table-empty" colspan="2">There are no timeslots avaliable on this date.</td>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr>
+                    </div>
+                    {% if is_superuser %}
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="custom-timeslot">
+                                    <input id="custom-timeslot-toggle" type="checkbox" name="{{ form.custom_timeslot.name }}"{% if form.custom_timeslot.value %} checked="checked"{% endif %} data-init-plugin="switchery" data-size="small" data-color="primary">
+                                    <label for="custom-timeslot-toggle">Custom Timeslot</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="form-group-attached">
+                                    <div class="row clearfix">
+                                        <div class="col-sm-4">
+                                            {% selectField form.field label="Field" group_extras="form-group-solo" %}
+                                        </div>
+                                        <div class="col-sm-4">
+                                            {% textField form.start_time id="start-time" label="Start Time" placeholder="HH:MM AM/PM" group_extras="form-group-solo input-daterange" %}
+                                        </div>
+                                        <div class="col-sm-4">
+                                            {% textField form.end_time id="end-time" label="Start Time" placeholder="HH:MM AM/PM" group_extras="form-group-solo input-daterange" %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    {% endif %}
+                    <div class="pull-left">
+                        <a href="{% url 'editor_step1' %}" class="btn btn-default btn-back">Go Back</a>
+                    </div>
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-primary editor-submit">{% if type == "new" %}Continue{% else %}Save{% endif %}</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

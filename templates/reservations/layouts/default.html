@@ -1,0 +1,21 @@
+{% extends 'reservations/layouts/base.html' %}
+{% block base_content %}
+<div class="content">
+    <!-- BEGIN BREADCRUMBS -->
+    <div class="jumbotron" data-pages="parallax">
+        <div class="container-fluid container-fixed-lg sm-p-l-20 sm-p-r-20">
+            <div class="inner">
+                {% block breadcrumbs %}{% endblock %}
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!-- END BREADCRUMBS -->
+    <div class="container-fluid container-fixed-lg">
+        {% block content %}{% endblock %}
+    </div>
+</div>
+<!-- BEGIN FOOTER -->
+{% include 'reservations/layouts/footer.html' %}
+<!-- END FOOTER -->
+{% endblock %}

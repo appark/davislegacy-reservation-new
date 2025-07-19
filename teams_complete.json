@@ -1,0 +1,1172 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 100,
+    "fields": {
+      "username": "boys17red",
+      "first_name": "Malia",
+      "last_name": "Pulido-Dahal",
+      "email": "Mal.pulido@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 100,
+    "fields": {
+      "team": 100,
+      "description": "",
+      "age": 9,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 101,
+    "fields": {
+      "username": "girls17red",
+      "first_name": "Matt",
+      "last_name": "Corea",
+      "email": "matthew.correa@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 101,
+    "fields": {
+      "team": 101,
+      "description": "",
+      "age": 9,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 102,
+    "fields": {
+      "username": "boys17white",
+      "first_name": "Malia",
+      "last_name": "Pulido-Dahal",
+      "email": "missmaliapulido@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 102,
+    "fields": {
+      "team": 102,
+      "description": "",
+      "age": 9,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 103,
+    "fields": {
+      "username": "girls17white",
+      "first_name": "Angelica",
+      "last_name": "Khorashadi",
+      "email": "akhorashadi@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 103,
+    "fields": {
+      "team": 103,
+      "description": "",
+      "age": 9,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 104,
+    "fields": {
+      "username": "boys16red",
+      "first_name": "Harpreet",
+      "last_name": "Dhanda",
+      "email": "harpreetdhanda@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 104,
+    "fields": {
+      "team": 104,
+      "description": "",
+      "age": 10,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 105,
+    "fields": {
+      "username": "girls16red",
+      "first_name": "Shayan",
+      "last_name": "Rehman",
+      "email": "s.rehman.civil@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 105,
+    "fields": {
+      "team": 105,
+      "description": "",
+      "age": 10,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 106,
+    "fields": {
+      "username": "boys16white",
+      "first_name": "Marilyn",
+      "last_name": "Solorio",
+      "email": "soloriomarilyn@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 106,
+    "fields": {
+      "team": 106,
+      "description": "",
+      "age": 10,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 107,
+    "fields": {
+      "username": "girls16white",
+      "first_name": "Katelyn",
+      "last_name": "Foley",
+      "email": "katefoley4@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 107,
+    "fields": {
+      "team": 107,
+      "description": "",
+      "age": 10,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 108,
+    "fields": {
+      "username": "boys15red",
+      "first_name": "Malia",
+      "last_name": "Pulido-Dahal",
+      "email": "mal.pulido@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 108,
+    "fields": {
+      "team": 108,
+      "description": "",
+      "age": 11,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 109,
+    "fields": {
+      "username": "girls15red",
+      "first_name": "Stacey",
+      "last_name": "Scarborough",
+      "email": "stacey_kay03@yahoo.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 109,
+    "fields": {
+      "team": 109,
+      "description": "",
+      "age": 11,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 110,
+    "fields": {
+      "username": "boys15white",
+      "first_name": "Tracy",
+      "last_name": "Alexander",
+      "email": "tracy.m.alex@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 110,
+    "fields": {
+      "team": 110,
+      "description": "",
+      "age": 11,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 111,
+    "fields": {
+      "username": "girls15white",
+      "first_name": "Michael",
+      "last_name": "Pettigrew",
+      "email": "michaelpettigrew64@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 111,
+    "fields": {
+      "team": 111,
+      "description": "",
+      "age": 11,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 112,
+    "fields": {
+      "username": "boys15black",
+      "first_name": "Yeongyo",
+      "last_name": "Anna Suh",
+      "email": "yg.a.suh@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 112,
+    "fields": {
+      "team": 112,
+      "description": "",
+      "age": 11,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 113,
+    "fields": {
+      "username": "boys14red",
+      "first_name": "Jacque",
+      "last_name": "Bramwell",
+      "email": "jacuebramwell@hotmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 113,
+    "fields": {
+      "team": 113,
+      "description": "",
+      "age": 12,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 114,
+    "fields": {
+      "username": "girls14red",
+      "first_name": "Tania",
+      "last_name": "Ruiz",
+      "email": "htania08@yahoo.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 114,
+    "fields": {
+      "team": 114,
+      "description": "",
+      "age": 12,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 115,
+    "fields": {
+      "username": "boys14white",
+      "first_name": "Marisol",
+      "last_name": "Larsen",
+      "email": "cmlarsen08@hotmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 115,
+    "fields": {
+      "team": 115,
+      "description": "",
+      "age": 12,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 116,
+    "fields": {
+      "username": "girls14white",
+      "first_name": "Cassie",
+      "last_name": "Majestic",
+      "email": "cassiemajestic@icloud.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 116,
+    "fields": {
+      "team": 116,
+      "description": "",
+      "age": 12,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 117,
+    "fields": {
+      "username": "boys14black",
+      "first_name": "Rosanna",
+      "last_name": "Tesorero",
+      "email": "rrobles_tesorero@yahoo.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 117,
+    "fields": {
+      "team": 117,
+      "description": "",
+      "age": 12,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 118,
+    "fields": {
+      "username": "boys13red",
+      "first_name": "Abbie",
+      "last_name": "Harper",
+      "email": "harper.abbie@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 118,
+    "fields": {
+      "team": 118,
+      "description": "",
+      "age": 13,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 119,
+    "fields": {
+      "username": "girls13red",
+      "first_name": "Kiyomi",
+      "last_name": "Morales",
+      "email": "imoyik18@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 119,
+    "fields": {
+      "team": 119,
+      "description": "",
+      "age": 13,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 120,
+    "fields": {
+      "username": "boys13white",
+      "first_name": "Jessica",
+      "last_name": "Tomlinson",
+      "email": "jessjj@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 120,
+    "fields": {
+      "team": 120,
+      "description": "",
+      "age": 13,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 121,
+    "fields": {
+      "username": "girls13white",
+      "first_name": "Inesita",
+      "last_name": "Arce",
+      "email": "Ine85@yahoo.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 121,
+    "fields": {
+      "team": 121,
+      "description": "",
+      "age": 13,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 122,
+    "fields": {
+      "username": "boys12red",
+      "first_name": "Sarah",
+      "last_name": "Robertson",
+      "email": "skspurr@hotmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 122,
+    "fields": {
+      "team": 122,
+      "description": "",
+      "age": 14,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 123,
+    "fields": {
+      "username": "girls12red",
+      "first_name": "Serena",
+      "last_name": "Dunlap",
+      "email": "serenadunlap09@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 123,
+    "fields": {
+      "team": 123,
+      "description": "",
+      "age": 14,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 124,
+    "fields": {
+      "username": "boys12white",
+      "first_name": "Tiffany",
+      "last_name": "Du",
+      "email": "tiffanydu08@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 124,
+    "fields": {
+      "team": 124,
+      "description": "",
+      "age": 14,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 125,
+    "fields": {
+      "username": "girls12white",
+      "first_name": "Nicole",
+      "last_name": "Dozier",
+      "email": "nlvincent78@yahoo.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 125,
+    "fields": {
+      "team": 125,
+      "description": "",
+      "age": 14,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 126,
+    "fields": {
+      "username": "boys12black",
+      "first_name": "Felipe",
+      "last_name": "Olvera",
+      "email": "Felipe@afc360.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 126,
+    "fields": {
+      "team": 126,
+      "description": "",
+      "age": 14,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 127,
+    "fields": {
+      "username": "boys11red",
+      "first_name": "Dany",
+      "last_name": "Mendez",
+      "email": "danyjmendez@outlook.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 127,
+    "fields": {
+      "team": 127,
+      "description": "",
+      "age": 15,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 128,
+    "fields": {
+      "username": "girls11red",
+      "first_name": "Sarah",
+      "last_name": "Haringer",
+      "email": "sjheringer@yahoo.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 128,
+    "fields": {
+      "team": 128,
+      "description": "",
+      "age": 15,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 129,
+    "fields": {
+      "username": "boys11white",
+      "first_name": "Mai",
+      "last_name": "Her",
+      "email": "maipahniaher@yahoo.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 129,
+    "fields": {
+      "team": 129,
+      "description": "",
+      "age": 15,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 130,
+    "fields": {
+      "username": "girls11white",
+      "first_name": "Dan",
+      "last_name": "Silva",
+      "email": "danielsilva916@yahoo.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 130,
+    "fields": {
+      "team": 130,
+      "description": "",
+      "age": 15,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 131,
+    "fields": {
+      "username": "boys11black",
+      "first_name": "Erika",
+      "last_name": "Montano",
+      "email": "k9olaf@hotmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 131,
+    "fields": {
+      "team": 131,
+      "description": "",
+      "age": 15,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 132,
+    "fields": {
+      "username": "boys10red",
+      "first_name": "Gretchen",
+      "last_name": "Tornabene",
+      "email": "gtornabene@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 132,
+    "fields": {
+      "team": 132,
+      "description": "",
+      "age": 16,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 133,
+    "fields": {
+      "username": "girls10red",
+      "first_name": "Jackie",
+      "last_name": "Guerrero",
+      "email": "schivojax916@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 133,
+    "fields": {
+      "team": 133,
+      "description": "",
+      "age": 16,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 134,
+    "fields": {
+      "username": "boys10white",
+      "first_name": "Priscilla",
+      "last_name": "Magano",
+      "email": "priscillamagano1@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 134,
+    "fields": {
+      "team": 134,
+      "description": "",
+      "age": 16,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 135,
+    "fields": {
+      "username": "girls10white",
+      "first_name": "Jim",
+      "last_name": "McNearney",
+      "email": "jamcnearney@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 135,
+    "fields": {
+      "team": 135,
+      "description": "",
+      "age": 16,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 136,
+    "fields": {
+      "username": "boys09red",
+      "first_name": "Luis",
+      "last_name": "Avila",
+      "email": "avilakique@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 136,
+    "fields": {
+      "team": 136,
+      "description": "",
+      "age": 17,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 137,
+    "fields": {
+      "username": "girls09red",
+      "first_name": "Mary",
+      "last_name": "MacNiven",
+      "email": "m.macniven@yahoo.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 137,
+    "fields": {
+      "team": 137,
+      "description": "",
+      "age": 17,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 138,
+    "fields": {
+      "username": "boys09white",
+      "first_name": "Jennifer",
+      "last_name": "Aguilar",
+      "email": "c25jennifer85@aol.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 138,
+    "fields": {
+      "team": 138,
+      "description": "",
+      "age": 17,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 139,
+    "fields": {
+      "username": "girls09white",
+      "first_name": "Michele",
+      "last_name": "Threlkel",
+      "email": "michristhrel13@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 139,
+    "fields": {
+      "team": 139,
+      "description": "",
+      "age": 17,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 140,
+    "fields": {
+      "username": "boys09black",
+      "first_name": "Harmony",
+      "last_name": "Scopazzi",
+      "email": "hscopazzi@hotmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 140,
+    "fields": {
+      "team": 140,
+      "description": "",
+      "age": 17,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 141,
+    "fields": {
+      "username": "boys08red",
+      "first_name": "Jaime",
+      "last_name": "Carroll",
+      "email": "jmecarroll5@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 141,
+    "fields": {
+      "team": 141,
+      "description": "",
+      "age": 19,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 142,
+    "fields": {
+      "username": "girls08red",
+      "first_name": "Laura",
+      "last_name": "Mariani",
+      "email": "ljtocco@yahoo.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 142,
+    "fields": {
+      "team": 142,
+      "description": "",
+      "age": 19,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 143,
+    "fields": {
+      "username": "boys08white",
+      "first_name": "Tom",
+      "last_name": "Carroll",
+      "email": "tntcarroll@gmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 143,
+    "fields": {
+      "team": 143,
+      "description": "",
+      "age": 19,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 144,
+    "fields": {
+      "username": "girls08white",
+      "first_name": "Yolanta",
+      "last_name": "Petrofsky",
+      "email": "ypetrof@hotmail.com",
+      "password": "pbkdf2_sha256$600000$DYSL2025$hash",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "groups": [1],
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 144,
+    "fields": {
+      "team": 144,
+      "description": "",
+      "age": 19,
+      "gender": "girls"
+    }
+  }
+]

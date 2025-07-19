@@ -1,0 +1,184 @@
+{% extends 'reservations/layouts/default.html' %}
+{% load static %}
+{% load form_extras %}
+
+{% block title %}Website Settings | {% endblock %}
+
+{% block addCSS %}
+    <link href="{% static 'assets/plugins/bootstrap-select2/select2.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block addJS %}
+    <script src="{% static 'assets/plugins/bootstrap-select2/select2.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/bootstrap-timepicker/bootstrap-timepicker.min.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+            $("#start-time").focus(function() {
+                $(this).timepicker("showWidget");
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block breadcrumbs %}
+<ul class="breadcrumb">
+    <li>Admin</li>
+    <li><a href="{% url 'website_settings' %}" class="active">Website Settings</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">Website Settings</div>
+            </div>
+            <div class="panel-body panel-action-list">
+                <div class="row">
+                    <div class="col-md-9">
+                        <p class="action-text">Calendar Export Range is currently <strong>{{ calendar_form.get_start_day }} - {{ calendar_form.get_end_day }}</strong></p>
+                    </div>
+                    <div class="col-md-3 action-btn">
+                        <button class="btn btn-default btn-block action-btn" data-toggle="modal" data-target="#modal-edit-export-range"><i class="fa fa-fw fa-inbox"></i> <span class="text">Change<span class="mobile-text"> Export Range</span></span></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">
+                        <p class="action-text">Reservation Token Timeout is currently <strong>{{ timeout_form.get_time }} Minutes</strong></p>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-default btn-block action-btn" data-toggle="modal" data-target="#modal-edit-timeout"><i class="fa fa-fw fa-clock-o"></i> <span class="text">Change<span class="mobile-text"> Timeout</span></span></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">
+                        <p class="action-text with-help">Reservations blocks start on <strong>{{ block_form.get_start_day }} at {{ block_form.get_start_time }}</strong></p>
+                        <p class="help-text">This means that after <strong>{{ block_form.get_start_day }} at {{ block_form.get_start_time }}</strong>, a team will no longer be able to change their reservations for the following weekend.</p>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-default btn-block action-btn" data-toggle="modal" data-target="#modal-edit-block-time"><i class="fa fa-fw fa-calendar-times-o"></i> <span class="text">Change<span class="mobile-text"> Block Time</span></span></button>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-9">
+                        <p class="action-text">Refresh All Reservation Tokens</p>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="{% url 'refresh_tokens' %}" class="btn btn-default btn-block action-btn confirm" data-custom="This will delete open tokens for people currently trying to make a reservation. It may interrupt their ability to finish making that reservation, resulting in loss of work!"><i class="fa fa-fw fa-refresh"></i> <span class="text">Refresh<span class="mobile-text"> Tokens</span></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">Links</div>
+            </div>
+            <div class="panel-body panel-action-list">
+                <div class="row">
+                    <div class="col-md-9">
+                        <p class="action-text">Recover Trashed Objects</p>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="{% url 'recovery' %}" class="btn btn-default btn-block action-btn"><i class="fa fa-fw fa-medkit"></i> <span class="text">Recovery</span></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">
+                        <p class="action-text">See Website Logs</p>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="{% url 'admin:admin_logentry_changelist' %}" class="btn btn-default btn-block action-btn"><i class="fa fa-fw fa-paperclip"></i> <span class="text">View<span class="mobile-text"> Logs</span></span></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">
+                        <p class="action-text">See Archived Reservations</p>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="{% url 'old_reservations' %}" class="btn btn-default btn-block action-btn"><i class="fa fa-fw fa-archive"></i> <span class="text">View<span class="mobile-text"> Archive</span></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block modals %}
+<div class="modal fade stick-up disable-scroll" id="modal-edit-block-time" tabindex="-1" role="dialog" aria-labelledby="Change Block Time Dialog" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content-wrapper">
+            <div class="modal-content">
+                <div class="modal-header clearfix text-left">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i></button>
+                    <h5>Change Reservation Block Time</h5>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{% url 'edit_block_time' %}">
+                        {% csrf_token %}
+                        {% selectField block_form.start_day required=True label="Start Day" %}
+                        <div class="form-group form-group-default required">
+                            <input id="start-time" type="text" class="form-control" name="{{ block_form.start_time.name }}" value="{{ block_form.start_time.value }}" placeholder="Start Time (HH:MM AM/PM)" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-10 col-md-2">
+                                <button type="submit" class="btn btn-block btn-primary">Change</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade stick-up disable-scroll" id="modal-edit-export-range" tabindex="-1" role="dialog" aria-labelledby="Change Export Range Dialog" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content-wrapper">
+            <div class="modal-content">
+                <div class="modal-header clearfix text-left">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i></button>
+                    <h5>Change Calendar Export Range</h5>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{% url 'edit_calendar' %}">
+                        {% csrf_token %}
+                        {% selectField calendar_form.start_day required=True label="Start Day" %}
+                        {% selectField calendar_form.end_day required=True label="End Day" %}
+                        <div class="row">
+                            <div class="col-md-offset-10 col-md-2">
+                                <button type="submit" class="btn btn-block btn-primary">Change</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade stick-up disable-scroll" id="modal-edit-timeout" tabindex="-1" role="dialog" aria-labelledby="Change Timeout Dialog" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content-wrapper">
+            <div class="modal-content">
+                <div class="modal-header clearfix text-left">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i></button>
+                    <h5>Change Reservation Token Timeout</h5>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{% url 'edit_timeout' %}">
+                        {% csrf_token %}
+                        {% textField timeout_form.time required=True label="Minutes" placeholder="Timeout" %}
+                        <div class="row">
+                            <div class="col-md-offset-10 col-md-2">
+                                <button type="submit" class="btn btn-block btn-primary">Change</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,7 @@
+<div class="form-group form-group-default{% if poptext %} pop-text-trigger{% endif %}{% if required %} required{% endif %}{% if group_extras %} {{ group_extras }}{% endif %}">
+    <label>{{ label }}</label>
+    {% block input %}
+        <input{% if id %} id="{{ id }}"{% endif %} type="{{ field_type }}" name="{{ field.name }}" class="form-control" value="{{ value|default_if_none:"" }}" placeholder="{{ placeholder|default_if_none:label }}"{% if required %} required{% endif %}{% if extras %} {{ extras }}{% endif %}>
+    {% endblock %}
+</div>
+{% if poptext %}<p class="help-block pop-text">{{ poptext }}</p>{% endif %}

@@ -1,0 +1,62 @@
+# Environment variables and secrets
+.env
+*.env
+
+# Database backups
+backups/
+*.sql
+*.sql.gz
+backup.log
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Static files (if collected)
+/static/
+staticfiles/
+
+# Media files
+media/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Docker volumes
+volumes/
+
+# Backup files
+*.backup
+*.bak
+*.orig
+
+# Temporary files
+*.tmp
+*.temp

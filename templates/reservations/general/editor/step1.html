@@ -1,0 +1,71 @@
+{% extends 'reservations/layouts/default.html' %}
+{% load static %}
+{% load form_extras %}
+
+{% block title %}{% if type == "new" %}New Reservation{% else %}Edit Reservation{% endif %} | {% endblock %}
+
+{% block addCSS %}
+    <link href="{% static 'assets/plugins/bootstrap-select2/select2.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/bootstrap-datepicker/css/datepicker3.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block addJS %}
+    <script src="{% static 'assets/plugins/bootstrap-select2/select2.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+            window.onbeforeunload = function() {
+                $.ajax({
+                    type: "GET",
+                    url: "{% url 'api_clear_tokens' %}",
+                    async: false
+                });
+            };
+
+            $(".editor-submit").click(function() {
+                window.onbeforeunload = null;
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block breadcrumbs %}
+<ul class="breadcrumb">
+    {% if is_superuser %}<li>Admin</li>{% else %}<li>My Team</li>{% endif %}
+    <li><a href="{% url 'editor_step1' %}" class="active">{% if type == "new" %}New Reservation{% else %}Edit Reservation{% endif %}</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">Create a New Reservation</div>
+            </div>
+            <div class="panel-body">
+                <form method="post" action="{% url 'editor_step1' %}">
+                    {% csrf_token %}
+
+                    {% if is_team %}
+                        {% selectField form.team required=True label="Team" extras="disabled" %}
+                    {% else %}
+                        {% selectField form.team required=True label="Team" %}
+                    {% endif %}
+
+                    {% numberField form.game_number required=True label="Game Number" %}
+                    {% textField form.game_opponent required=True label="Game Opponent" %}
+                    {% selectField form.gametype required=True label="Gametype" %}
+                    {% dateField form.date required=True label="Game Date" %}
+
+                    <hr>
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-primary editor-submit">Continue</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

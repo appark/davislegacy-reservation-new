@@ -1,0 +1,6 @@
+You are receiving this email because the reservation "{{ reservation }} on {{ reservation.date }}" has been approved!
+
+Visit the link below to view all your reservations:
+{% load setting_extras %}{% getSetting "SITE_DOMAIN" as site_domain %}{{ site_domain }}{{ link }}
+
+- The {% getSetting "SITE_NAME" as site_name %}{{ site_name }} Team

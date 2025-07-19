@@ -1,0 +1,122 @@
+{% load static %}
+{% load calendar_extras %}
+<script src="{% static 'assets/plugins/bootstrap-select2/select2.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.6/interact.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+<script src="{% static 'assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
+<script src="{% static 'assets/plugins/fullcalendar/fullcalendar.min.js' %}"></script>
+<script src="{% static 'assets/js/calendar.js' %}"></script>
+<script>
+    $(document).ready(function() {
+        var gametypes = {
+            {% for gametype, data in gametypes.items %}
+                {{ gametype.pk }}: {
+                    'reservations': {
+                        events: [
+                            {% for reservation in data.reservations %}
+                                {
+                                    id: {{ reservation.pk }},
+                                    type: "reservation",
+                                    title: "{{ reservation }}",
+                                    start: "{{ reservation.date|date:"c" }}T{{ reservation.timeslot.start_time|date:"c" }}",
+                                    end: "{{ reservation.date|date:"c" }}T{{ reservation.timeslot.end_time|date:"c" }}",
+                                    url: "{% url 'reservation' reservation_id=reservation.pk %}"
+                                },
+                            {% endfor %}
+                        ],
+                        backgroundColor: "#42a5f5",
+                        borderColor: "#42a5f5",
+                        textColor: "#ffffff"
+                    }, 'tournaments': {
+                        events: [
+                            {% for tournament in data.tournaments %}
+                                {
+                                    id: {{ tournament.pk }},
+                                    type: "tournament",
+                                    title: "{% if tournament.gametype %}{{ tournament.gametype }} {% endif %}{{ tournament.name }}",
+                                    start: "{{ tournament.start_date|date:"c" }}",
+                                    end: "{{ tournament.end_date|makeInclusive|date:"c" }}",
+                                    allDay: true,
+                                    url: "{% url 'tournament' tournament_id=tournament.pk %}"
+                                },
+                            {% endfor %}
+                        ],
+                        backgroundColor: "#27beb2",
+                        borderColor: "#27beb2",
+                        textColor: "#ffffff"
+                    }
+                },
+            {% endfor %}
+        };
+
+        var other_tournaments = {
+            events: [
+                {% for tournament in other_tournaments %}
+                    {
+                        id: {{ tournament.pk }},
+                        type: "tournament",
+                        title: "{{ tournament.name }}",
+                        start: "{{ tournament.start_date|date:"c" }}",
+                        end: "{{ tournament.end_date|makeInclusive|date:"c" }}",
+                        allDay: true,
+                        url: "{% url 'tournament' tournament_id=tournament.pk %}"
+                    },
+                {% endfor %}
+            ],
+            backgroundColor: "#27beb2",
+            borderColor: "#27beb2",
+            textColor: "#ffffff"
+        };
+
+        function showReservations() {
+            for(var key in gametypes) {
+                $("#calendar").fullCalendar("addEventSource", gametypes[key]['reservations']);
+            }
+        }
+
+        function showTournaments() {
+            $("#calendar").fullCalendar("addEventSource", other_tournaments);
+            for(var key in gametypes) {
+                $("#calendar").fullCalendar("addEventSource", gametypes[key]['tournaments']);
+            }
+        }
+
+        function showGametype(type) {
+            $("#calendar").fullCalendar("addEventSource", gametypes[type]['reservations']);
+            $("#calendar").fullCalendar("addEventSource", gametypes[type]['tournaments']);
+        }
+
+        $("#change-calendar").on("change", function() {
+            $("#calendar").fullCalendar("removeEvents");
+            switch($(this).val()) {
+                case "all":
+                    showReservations();
+                    showTournaments();
+                    break;
+                case "tournaments":
+                    showTournaments();
+                    break;
+                case "reservations":
+                    showReservations();
+                    break;
+                {% for gametype, reservations in gametypes.items %}
+                    case "gametype-{{ gametype.pk }}":
+                        showGametype({{ gametype.pk }});
+                        break;
+                {% endfor %}
+            }
+        });
+
+        $("#calendar").createFullCalendar([
+            {% for gametype, data in gametypes.items %}
+                gametypes[{{ gametype.pk }}]['reservations'],
+                gametypes[{{ gametype.pk }}]['tournaments'],
+            {% endfor %}
+            other_tournaments
+        ], "{% url 'api_reservation_list' %}", "{% url 'api_tournament_list' %}");
+
+        $("#export-range-btn").click(function() {
+            $("#modal-export-range").modal("hide");
+        });
+    });
+</script>

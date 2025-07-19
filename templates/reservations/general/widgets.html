@@ -1,0 +1,352 @@
+{% extends 'reservations/layouts/base.html' %}
+{% load static %}
+{% load navigation_extras %}
+
+{% block title %}Dashboard | {% endblock %}
+
+{% block addCSS %}
+    {% include 'reservations/general/calendar/styles.html' %}
+    <link href="{% static 'assets/css/widgets.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/nvd3/nv.d3.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/jquery-metrojs/MetroJs.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block addJS %}
+    {% include 'reservations/general/calendar/scripts.html' %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.5.3/jquery.timeago.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.2.0/list.min.js"></script>
+    <script src="{% static 'assets/plugins/nvd3/lib/d3.v3.js' %}"></script>
+    <script src="{% static 'assets/plugins/nvd3/nv.d3.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/nvd3/src/tooltip.js' %}"></script>
+    <script src="{% static 'assets/plugins/jquery-metrojs/MetroJs.min.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+            $("time.timeago").timeago();
+
+            $(".widget-3 .metro").liveTile();
+            $("#now").text(moment().format("MMMM Do"));
+
+            $("#teams-resv-list").hide();
+            $("#teams-loading").html('<p class="hint-text m-l-10 m-t-10">Click on a team on the left to view more.</p>');
+            $(".teams-toggle").click(function() {
+                $(".teams-toggle").removeClass("active");
+                $(this).addClass("active");
+
+                var team_id = $(this).data("team-id");
+
+                $("#teams-resv-list").hide();
+                $("#teams-loading").html('<div class="progress-circle-indeterminate m-t-10"></div>');
+
+                $.ajax({
+                    type: "GET",
+                    url: "{% url 'api_team_list' %}" + team_id,
+                    dataType: "json",
+                    success: function(response) {
+                        var count = response['reservation_count'];
+                        var plural = '';
+
+                        if(count == 0) {
+                            $("#teams-loading").html('<p class="hint-text m-l-10 m-t-10">This team has no current reservations.</p>');
+                            return;
+                        } else if(count != 1) {
+                            plural = 's';
+                        }
+
+                        $("#teams-resv-count").html(count + ' Current Reservation' + plural);
+
+                        var html = '';
+                        for(var i = 0; i < response['reservation_set'].length; i++) {
+                            var name = response['reservation_set'][i]['title'];
+                            var date = response['reservation_set'][i]['date'];
+                            var resv_id = response['reservation_set'][i]['id'];
+
+                            html += '<tr>';
+                            html += '<td class="col-xs-8"><p class="font-montserrat all-caps fs-12 no-margin">' + name + '</p><p class="font-montserrat fs-10 no-margin">' + date + '</p></td>';
+                            html += '<td class="col-xs-4 text-right"><span class="hint-text small"><a href="#" class="team-details" data-resv-id="' + resv_id + '">More Details</a></span></td>';
+                            html += '</tr>';
+                        }
+
+                        $("#teams-resv-tbody").html(html);
+                        $("#teams-loading").html('');
+                        $("#teams-resv-list").show();
+                    },
+                    error: function(xhr, status, errorThrown) {
+                        $("#teams-loading").html('<p class="hint-text m-l-10 m-t-10">Something went wrong. Try again!</p>');
+                    }
+                });
+            });
+
+            $("#teams-resv-list").on("click", ".team-details", function(event) {
+                event.preventDefault();
+
+                var resv_id = $(this).data("resv-id");
+                showInfoModal("reservation", "{% url 'api_reservation_list' %}" + resv_id, "{% url 'dashboard' %}" + resv_id);
+
+                return false;
+            });
+
+            var userList = new List("teams-widget", {
+                valueNames: [ "team-name" ]
+            });
+
+            var field_data = [
+                {% for key, datum in field_data.items %}
+                    {
+                        "label": "{{ key }}",
+                        "value": "{{ datum.count }}",
+                        "resv_count": "{{ datum.resv_count }}",
+                        "tour_count": "{{ datum.tour_count }}",
+                    },
+                {% endfor %}
+            ];
+
+            nv.addGraph(function() {
+                var chart = nv.models.pieChart()
+                    .x(function(d) { return d.label })
+                    .y(function(d) { return d.value })
+                    .showLabels(false)
+                    .labelThreshold(1)
+                    .donut(true)
+                    .donutRatio(0.35)
+                    .noData("There are no events this week.")
+                    .tooltipContent(function(key, y, e, graph) {
+                        var resv_count = e.point.resv_count;
+                        var tour_count = e.point.tour_count;
+
+                        var resv_s = (resv_count != 1) ? 's' : '';
+                        var tour_s = (tour_count != 1) ? 's' : '';
+
+                        var html = '<div class="pie-tooltip"><p class="key font-montserrat">' + key + '</p>';
+
+                        if(resv_count > 0) {
+                            html += '<p class="value semi-bold">' + resv_count + ' Reservation' + resv_s + '</p>';
+                        }
+
+                        if(tour_count > 0) {
+                            html += '<p class="value semi-bold">' + tour_count + ' Tournament' + tour_s + '</p>';
+                        }
+
+                        html += '</div>';
+                        return html;
+                    });
+
+                d3.select("#nvd3-pie svg")
+                    .datum(field_data)
+                    .transition()
+                    .duration(350)
+                    .call(chart);
+
+                nv.utils.windowResize(chart.update);
+
+                return chart;
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block base_content %}
+<div class="content full-height">
+    <div class="container-fluid p-t-20 sm-p-t-0">
+        <div class="sm-gutter">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="widget widget-calendar panel panel-default">
+                        <div class="panel-heading separator">
+                            <div class="panel-title p-t-10">Calendar</div>
+                            <div class="pull-right m-b-5">
+                                <div class="visible-lg-inline visible-md-inline visible-sm-inline">
+                                    <select id="change-calendar" class="change-calendar" autocomplete="off" data-init-plugin="select2">
+                                        <option value="all">View All</option>
+                                        <option value="tournaments">View Tournaments</option>
+                                        <option value="reservations">View Reservations</option>
+                                        {% if gametypes.items %}
+                                            <optgroup label="View By Gametype">
+                                                {% for gametype, data in gametypes.items %}
+                                                    <option value="gametype-{{ gametype.pk }}">{{ gametype.type }}</option>
+                                                {% endfor %}
+                                            </optgroup>
+                                        {% endif %}
+                                    </select>
+                                    <button id="toggle-month-view" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Toggle Month View"><i class="fa fa-calendar"></i></button>
+                                </div>
+                                <div class="btn-group">
+                                    <a href="{% url 'get_csv' %}" class="btn btn-default" download><i class="fa fa-fw fa-cloud-download"></i><span class="hidden-xs"> Download</span></a>
+                                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-down"></i></button>
+                                    <ul class="dropdown-menu export-menu">
+                                        <li><a href="#" class="toggle-link" data-toggle="modal" data-target="#modal-export-range">Choose Export Range</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="calendar">
+                                <div class="options">
+                                    <div class="drager months-drager">
+                                        <div class="months" id="months"></div>
+                                    </div>
+                                    <div class="drager week-dragger">
+                                        <div class="weeks-wrapper" id="weeks-wrapper"></div>
+                                    </div>
+                                </div>
+                                <div class="calendar-body">
+                                    <div id="calendar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-xs-12 m-b-10 hidden-xs hidden-sm">
+                            <div class="widget widget-stats widget-3 panel bg-complete no-border no-margin widget-loader-bar">
+                                <div class="panel-body no-padding">
+                                    <div class="metro live-tile" data-mode="carousel" data-start-now="true" data-delay="7000">
+                                        <div class="slide-front tiles slide active">
+                                            <div class="padding-30">
+                                                <div class="pull-bottom p-b-30">
+                                                    <h3 class="no-margin text-white p-b-10">Hello, <span class="semi-bold">{{ request.user.fullname|title }}</span></h3>
+                                                    {% resvCount as count %}
+                                                    <p class="text-white p-t-5 p-r-30 fs-16">You have <a href="{% url 'all_reservations' %}"><strong>{{ count }} pending reservation{% if count|add:0 != 1 %}s{% endif %}</strong></a>.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slide-back tiles">
+                                            <div class="padding-30">
+                                                <div class="pull-bottom p-b-30">
+                                                    <p class="p-t-10 fs-12 p-b-5 hint-text">Week of <span id="now"></span></p>
+                                                    <h3 class="no-margin text-white p-r-30 p-b-10">
+                                                        There {% if reservations_count|add:0 != 1 %}are{% else %}is{% endif %} <a href="{% url 'all_reservations' %}"><span class="semi-bold">{{ reservations_count }} game{% if reservations_count|add:0 != 1 %}s{% endif %}</span></a>
+                                                        <br>
+                                                        and <a href="{% url 'all_tournaments' %}"><span class="semi-bold">{{ tournaments_count }} tournament{% if tournaments_count|add:0 != 1 %}s{% endif %}</span></a> this week.
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 m-b-10">
+                            <div class="widget widget-table widget-11 panel panel-default no-margin">
+                                <div class="panel-heading">
+                                    <div class="panel-title">Pending Reservations</div>
+                                </div>
+                                <div class="widget-11-table">
+                                    <table class="table table-condensed table-striped">
+                                        <tbody>
+                                            {% for reservation in pending %}
+                                                <tr>
+                                                    <td class="col-md-6">
+                                                        <p class="font-montserrat all-caps fs-12 no-margin">{{ reservation }}</p>
+                                                        <p class="font-montserrat fs-10 no-margin">{{ reservation.date }}</p>
+                                                    </td>
+                                                    <td class="col-xs-3 text-right b-r b-dashed b-grey">
+                                                        <a href="{% url 'approve_reservation' reservation_id=reservation.pk %}" class="btn btn-success" data-toggle="tooltip" data-placement="left" title="Approve"><i class="fa fa-check-circle"></i></a>
+                                                    </td>
+                                                </tr>
+                                            {% empty %}
+                                                <tr colspan="2"><p class="text-center hint-text m-t-20">All reservations are currently approved!</p></tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="{% url 'all_reservations' %}"><i class="fa fa-book m-r-5"></i> See more reservations</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 hidden-xs hidden-sm">
+                            <div class="widget widget-pie-chart panel panel-condensed panel-default no-margin">
+                                <div class="panel-heading">
+                                    <div class="panel-title">Field Usage This Week</div>
+                                </div>
+                                <div class="panel-body">
+                                    <div id="nvd3-pie" class="pie-chart">
+                                        <svg></svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 m-b-10">
+                    <div class="widget widget-table widget-11 panel panel-default no-margin">
+                        <div class="panel-heading">
+                            <div class="panel-title">Recent Activity</div>
+                        </div>
+                        <div class="widget-11-table">
+                            <table class="table table-condensed table-striped">
+                                <tbody>
+                                    {% for activity in recent_activity %}
+                                        <tr>
+                                            <td class="col-md-6">
+                                                <p class="font-montserrat all-caps fs-12 no-margin">{{ activity.tag }}</p>
+                                                <p class="font-montserrat fs-10 no-margin">{{ activity.message }}</p>
+                                            </td>
+                                            <td class="col-xs-3 text-right b-r b-dashed b-grey">
+                                                <span class="hint-text small">{{ activity.user }}</span>
+                                            </td>
+                                            <td class="col-xs-3 text-right">
+                                                <time class="timeago hint-text small" datetime="{{ activity.time|date:"c" }}">{{ activity.time }}</time>
+                                            </td>
+                                        </tr>
+                                    {% empty %}
+                                        <tr colspan="2"><p class="text-center m-t-20">There is currently no logs.</p></tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="panel-footer">
+                            <a href="{% url 'admin:admin_logentry_changelist' %}"><i class="fa fa-clock-o m-r-5"></i> See more activity</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 m-b-10">
+                    <div id="teams-widget" class="widget widget-teams panel panel-default panel-default no-margin">
+                        <div class="panel-heading">
+                            <div class="panel-title">Approved Team Reservations</div>
+                        </div>
+                        <div class="panel-body p-t-25">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control search" name="teams" placeholder="Search Teams"></input>
+                                    </div>
+                                    <div class="teams-list">
+                                        <ul class="nav nav-pills nav-stacked list">
+                                            {% for team in teams %}
+                                                <li class="teams-toggle" data-team-id="{{ team.pk }}"><a href="#" class="toggle-link team-name">{{ team.fullname }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-xs-8">
+                                    <div id="teams-loading"></div>
+                                    <div id="teams-resv-list" class="m-l-10">
+                                        <h5 id="teams-resv-count"></h5>
+                                        <div class="teams-resv-list">
+                                            <table class="table table-condensed table-striped">
+                                                <tbody id="teams-resv-tbody">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block modals %}
+    {% include 'reservations/general/calendar/modals.html' %}
+{% endblock %}

@@ -1,0 +1,15 @@
+You are receiving this email because a new reservation has been made for your team.
+
+Reservation Details:
+=====================
+Team: {{ reservation.team.fullname }}
+Game Number: {{ reservation.game_number }}
+Game Opponent: {{ reservation.game_opponent }}
+Game Type: {{ reservation.gametype }}
+Time: {{ reservation.timeslot.start_time }} - {{ reservation.timeslot.end_time }}
+Date: {{ reservation.date|date:'N j, Y' }}
+Location: {{ reservation.location.name }}
+
+You will be emailed when your reservation is approved.
+
+- The {% load setting_extras %}{% getSetting "SITE_NAME" as site_name %}{{ site_name }} Team

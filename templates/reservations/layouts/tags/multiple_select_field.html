@@ -1,0 +1,8 @@
+{% extends 'reservations/layouts/tags/select_field.html' %}
+{% block select %}
+    <select{% if id %} id="{{ id }}"{% endif %} class="full-width" name="{{ field.name }}"{% if placeholder %} placeholder="{{ placeholder }}"{% endif %} multiple{% if required %} required{% endif %} data-init-plugin="select2"{% if extras %} {{ extras }}{% endif %}>
+        {% for choice_value, choice_label in field.field.choices %}
+            <option value="{{ choice_value }}"{% if choice_value|add:0 in value %} selected="selected"{% endif %}>{{ choice_label }}</option>
+        {% endfor %}
+    </select>
+{% endblock %}

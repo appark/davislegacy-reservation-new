@@ -1,0 +1,63 @@
+{% extends 'reservations/layouts/default.html' %}
+{% load static %}
+{% load form_extras %}
+{% block title %}{% if tournament %}Edit{% else %}New{% endif %} Tournament | {% endblock %}
+{% block addCSS %}
+    <link href="{% static 'assets/plugins/bootstrap-select2/select2.css' %}" rel="stylesheet">
+{% endblock %}
+{% block addJS %}
+    <script src="{% static 'assets/plugins/bootstrap-select2/select2.min.js' %}"></script>
+    <script>
+    $(function() {
+        window.onbeforeunload = function() {
+            $.ajax({
+                type: "GET",
+                url: "{% url 'api_clear_tokens' %}",
+                async: false
+            });
+        };
+        $(".tournament-submit").click(function() {
+            window.onbeforeunload = null;
+        });
+    });
+    </script>
+{% endblock %}
+{% block breadcrumbs %}
+<ul class="breadcrumb">
+    <li>Admin</li>
+    <li><a href="{% url 'all_tournaments' %}">Tournaments</a></li>
+    <li><a href="{% url 'new_tournament' %}" class="active">New Tournament</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">{% if tournament %}Edit This Tournament{% else %}Create a New Tournament{% endif %}</div>
+            </div>
+            <div class="panel-body">
+                <form method="post" action="{% if tournament %}{% url 'edit_tournament' tournament_id=tournament.pk %}{% else %}{% url 'new_tournament' %}{% endif %}">
+                    {% csrf_token %}
+                    {% textField form.name required=True label="Tournament Name" %}
+                    {% selectField form.gametype label="Gametype (Optional)" %}
+                    {% multipleSelectField form.locations required=True value=current_locations label="Fields" placeholder="Click here to add fields." %}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            {% textField form.start_date required=True label="Start Date" placeholder="YYYY-MM-DD" %}
+                        </div>
+                        <div class="col-sm-6">
+                            {% textField form.end_date required=True label="End Date" placeholder="YYYY-MM-DD" %}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-primary tournament-submit">{% if tournament %}Change{% else %}Create{% endif %}</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

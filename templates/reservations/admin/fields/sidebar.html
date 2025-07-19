@@ -1,0 +1,28 @@
+<div class="col-sm-3">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title">Fields</div>
+        </div>
+        <div class="panel-body">
+            <div class="hidden-xs">
+                <ul class="nav nav-pills nav-stacked">
+                    {% for field in all_fields %}
+                        <li{% if current_field and current_field.pk == field.pk %} class="active"{% endif %}><a href="{% url 'field' field_id=field.pk %}">{{ field.name }}</a></li>
+                    {% empty %}
+                        <li>There are currently no fields.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="visible-xs-block">
+                <div class="form-group">
+                    <select class="full-width nav-select" data-init-plugin="select2" autocomplete="off">
+                        <option>Choose a Field</option>
+                        {% for field in all_fields %}
+                            <option{% if current_field and current_field.pk == field.pk %} selected="selected"{% endif %} data-link="{% url 'field' field_id=field.pk %}">{{ field.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

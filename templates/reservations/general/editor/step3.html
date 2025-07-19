@@ -1,0 +1,102 @@
+{% extends 'reservations/layouts/default.html' %}
+
+{% block title %}New Reservation | {% endblock %}
+
+{% block addJS %}
+    <script>
+        $(document).ready(function() {
+            window.onbeforeunload = function() {
+                $.ajax({
+                    type: "GET",
+                    url: "{% url 'api_clear_tokens' %}",
+                    async: false
+                });
+            };
+
+            var preventUnload = function() {
+                window.onbeforeunload = null;
+            };
+
+            $(".editor-submit").click(preventUnload);
+            $(".btn-back").click(preventUnload);
+        });
+    </script>
+{% endblock %}
+
+{% block breadcrumbs %}
+<ul class="breadcrumb">
+    {% if is_superuser %}<li>Admin</li>{% else %}<li>My Team</li>{% endif %}
+    <li><a href="{% url 'editor_step3' %}" class="active">New Reservation</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">Review the Following</div>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-condensed table-details">
+                        <thead>
+                            <tr>
+                                <th>Details</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Team</strong></td>
+                                <td>{{ team.fullname }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Game Number</strong></td>
+                                <td>{{ game_number }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Game Opponent</strong></td>
+                                <td>{{ game_opponent }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gametype</strong></td>
+                                <td>{{ gametype.type }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Location</strong></td>
+                                <td>{{ location }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Timeslot</strong></td>
+                                <td>{{ timeslot.start_time }} - {{ timeslot.end_time }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Date</strong></td>
+                                <td>{{ date|date:'N j, Y' }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Age</strong></td>
+                                <td>{{ age }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gender</strong></td>
+                                <td>{{ gender }}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+                <div class="pull-left">
+                    <a href="{% url 'editor_step2' %}" class="btn btn-default btn-back">Go Back</a>
+                </div>
+                <div class="pull-right">
+                    <a href="{% url 'editor_complete' %}" class="btn btn-primary editor-submit">Submit</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

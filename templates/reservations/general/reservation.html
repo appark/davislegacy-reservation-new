@@ -1,0 +1,64 @@
+{% extends 'reservations/layouts/default.html' %}
+
+{% block title %}{{ reservation }} | {% endblock %}
+
+{% block breadcrumbs %}
+<ul class="breadcrumb">
+    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+    <li><a href="{% url 'reservation' reservation_id=reservation.pk %}" class="active">{{ reservation }}</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">Reservation for {{ reservation }}</div>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-condensed table-details">
+                        <thead>
+                            <tr>
+                                <th>Details</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Game Number</strong></td>
+                                <td>{{ reservation.game_number }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Game Opponent</strong></td>
+                                <td>{{ reservation.game_opponent }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gametype</strong></td>
+                                <td>{{ reservation.gametype.type }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Location</strong></td>
+                                <td>{{ reservation.location.name }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Timeslot</strong></td>
+                                <td>{{ reservation.timeslot.start_time }} - {{ reservation.timeslot.end_time }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Date</strong></td>
+                                <td>{{ reservation.date|date:'N j, Y' }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Organizer's Email</strong></td>
+                                <td>{% if reservation.team.email %}<a href="mailto:{{ reservation.team.email }}">{{ reservation.team.email }}</a>{% else %}No email provided.{% endif %}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

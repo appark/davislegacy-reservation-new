@@ -1,0 +1,90 @@
+[
+  {
+    "model": "reservations.field",
+    "pk": 3,
+    "fields": {
+      "active": true,
+      "name": "DLSC 7v7 1"
+    }
+  },
+  {
+    "model": "reservations.field",
+    "pk": 17,
+    "fields": {
+      "active": true,
+      "name": "DLSC 9v9 1"
+    }
+  },
+  {
+    "model": "reservations.field",
+    "pk": 23,
+    "fields": {
+      "active": true,
+      "name": "DLSC 11v11 1"
+    }
+  },
+  {
+    "model": "reservations.field",
+    "pk": 47,
+    "fields": {
+      "active": true,
+      "name": "DLSC 11v11 2"
+    }
+  },
+  {
+    "model": "reservations.field",
+    "pk": 51,
+    "fields": {
+      "active": false,
+      "name": "Playfields"
+    }
+  },
+  {
+    "model": "reservations.field",
+    "pk": 53,
+    "fields": {
+      "active": true,
+      "name": "DLSC 7v7 2"
+    }
+  },
+  {
+    "model": "reservations.field",
+    "pk": 55,
+    "fields": {
+      "active": true,
+      "name": "DLSC 9v9 2"
+    }
+  },
+  {
+    "model": "reservations.field",
+    "pk": 56,
+    "fields": {
+      "active": false,
+      "name": "DLSC 11v11 4"
+    }
+  },
+  {
+    "model": "reservations.field",
+    "pk": 57,
+    "fields": {
+      "active": false,
+      "name": "DLSC 11v11 5"
+    }
+  },
+  {
+    "model": "reservations.field",
+    "pk": 58,
+    "fields": {
+      "active": false,
+      "name": "DLSC 11v11 6"
+    }
+  },
+  {
+    "model": "reservations.field",
+    "pk": 59,
+    "fields": {
+      "active": false,
+      "name": "DLSC 11v11 7"
+    }
+  }
+]

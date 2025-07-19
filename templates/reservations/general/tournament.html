@@ -1,0 +1,52 @@
+{% extends 'reservations/layouts/default.html' %}
+
+{% block title %}{% if tournament.gametype %}{{ tournament.gametype }} {% endif %}{{ tournament.name }} | {% endblock %}
+
+{% block breadcrumbs %}
+<ul class="breadcrumb">
+    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+    <li><a href="{% url 'tournament' tournament_id=tournament.pk %}" class="active">{% if tournament.gametype %}{{ tournament.gametype }} {% endif %}{{ tournament.name }}</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">Tournament for {% if tournament.gametype %}{{ tournament.gametype }} {% endif %}{{ tournament.name }}</div>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-condensed table-details">
+                        <thead>
+                            <tr>
+                                <th>Details</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Gametype</strong></td>
+                                <td>{% if tournament.gametype %}{{ tournament.gametype }}{% else %}N/A{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Locations</strong></td>
+                                <td>{% for field in tournament.locations.all %}<span class="label label-default">{{ field }}</span> {% endfor %}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Start Date</strong></td>
+                                <td>{{ tournament.start_date|date:'N j, Y' }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>End Date</strong></td>
+                                <td>{{ tournament.start_date|date:'N j, Y' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

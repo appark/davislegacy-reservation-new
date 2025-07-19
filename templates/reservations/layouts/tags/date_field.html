@@ -1,0 +1,4 @@
+{% extends 'reservations/layouts/tags/text_field.html' %}
+{% block input %}
+    <input{% if id %} id="{{ id }}"{% endif %} type="text" name="{{ field.name }}" class="form-control" value="{{ value|default_if_none:"" }}" placeholder="{{ placeholder|default_if_none:"MM/DD/YYYY" }}"{% if required %} required{% endif %} data-provide="datepicker" data-date-autoclose="true" data-date-today-highlight="true"{% if extras %} {{ extras }}{% endif %}>
+{% endblock %}

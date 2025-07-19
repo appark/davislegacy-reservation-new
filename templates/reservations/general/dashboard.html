@@ -1,0 +1,67 @@
+{% extends 'reservations/layouts/base.html' %}
+
+{% block title %}Dashboard | {% endblock %}
+
+{% block addCSS %}
+    {% include 'reservations/general/calendar/styles.html' %}
+{% endblock %}
+
+{% block addJS %}
+    {% include 'reservations/general/calendar/scripts.html' %}
+{% endblock %}
+
+{% block base_content %}
+<div class="content full-height">
+    <div class="jumbotron dashboard-jumbotron m-b-0" data-pages="parallax">
+        <div class="container-fluid sm-p-l-20 sm-p-r-20">
+            <div class="inner">
+                <ul class="breadcrumb dashboard">
+                    <li>Dashboard</li>
+                </ul>
+                <div class="pull-right">
+                    <div class="visible-lg-inline visible-md-inline visible-sm-inline">
+                        <select id="change-calendar" class="change-calendar m-t-10" autocomplete="off" data-init-plugin="select2">
+                            <option value="all">View All</option>
+                            <option value="tournaments">View Tournaments</option>
+                            <option value="reservations">View Reservations</option>
+                            {% if gametypes.items %}
+                                <optgroup label="View By Gametype">
+                                    {% for gametype, data in gametypes.items %}
+                                        <option value="gametype-{{ gametype.pk }}">{{ gametype.type }}</option>
+                                    {% endfor %}
+                                </optgroup>
+                            {% endif %}
+                        </select>
+                        <button id="toggle-month-view" class="btn btn-default m-t-10" data-toggle="tooltip" data-placement="bottom" title="Toggle Month View"><i class="fa fa-calendar"></i></button>
+                    </div>
+                    <div class="btn-group m-t-10">
+                        <a href="{% url 'get_csv' %}" class="btn btn-default" download><i class="fa fa-fw fa-cloud-download"></i><span class="hidden-xs"> Download</span></a>
+                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-down"></i></button>
+                        <ul class="dropdown-menu export-menu">
+                            <li><a href="#" class="toggle-link" data-toggle="modal" data-target="#modal-export-range">Choose Export Range</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="calendar">
+        <div class="options">
+            <div class="drager months-drager">
+                <div class="months" id="months"></div>
+            </div>
+            <div class="drager week-dragger">
+                <div class="weeks-wrapper" id="weeks-wrapper"></div>
+            </div>
+        </div>
+        <div class="calendar-body">
+            <div id="calendar"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block modals %}
+    {% include 'reservations/general/calendar/modals.html' %}
+{% endblock %}

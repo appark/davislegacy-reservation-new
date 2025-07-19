@@ -1,0 +1,992 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 100,
+    "fields": {
+      "username": "boys17red",
+      "email": "Mal.pulido@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 100,
+    "fields": {
+      "team": 100,
+      "description": "Manager: Malia Pulido-Dahal",
+      "age": 9,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 101,
+    "fields": {
+      "username": "girls17red",
+      "email": "matthew.correa@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 101,
+    "fields": {
+      "team": 101,
+      "description": "Manager: Matt Corea",
+      "age": 9,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 102,
+    "fields": {
+      "username": "boys17white",
+      "email": "missmaliapulido@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 102,
+    "fields": {
+      "team": 102,
+      "description": "Manager: Malia Pulido-Dahal",
+      "age": 9,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 103,
+    "fields": {
+      "username": "girls17white",
+      "email": "akhorashadi@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 103,
+    "fields": {
+      "team": 103,
+      "description": "Manager: Angelica Khorashadi",
+      "age": 9,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 104,
+    "fields": {
+      "username": "boys16red",
+      "email": "harpreetdhanda@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 104,
+    "fields": {
+      "team": 104,
+      "description": "Manager: Harpreet Dhanda",
+      "age": 10,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 105,
+    "fields": {
+      "username": "girls16red",
+      "email": "s.rehman.civil@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 105,
+    "fields": {
+      "team": 105,
+      "description": "Manager: Shayan Rehman / Jillian Foster",
+      "age": 10,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 106,
+    "fields": {
+      "username": "boys16white",
+      "email": "soloriomarilyn@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 106,
+    "fields": {
+      "team": 106,
+      "description": "Manager: Marilyn Solorio",
+      "age": 10,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 107,
+    "fields": {
+      "username": "girls16white",
+      "email": "katefoley4@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 107,
+    "fields": {
+      "team": 107,
+      "description": "Manager: Katelyn Foley",
+      "age": 10,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 108,
+    "fields": {
+      "username": "boys15red",
+      "email": "mal.pulido@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 108,
+    "fields": {
+      "team": 108,
+      "description": "Manager: Malia Pulido-Dahal",
+      "age": 11,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 109,
+    "fields": {
+      "username": "girls15red",
+      "email": "stacey_kay03@yahoo.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 109,
+    "fields": {
+      "team": 109,
+      "description": "Manager: Stacey Scarborough",
+      "age": 11,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 110,
+    "fields": {
+      "username": "boys15white",
+      "email": "tracy.m.alex@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 110,
+    "fields": {
+      "team": 110,
+      "description": "Manager: Tracy Alexander",
+      "age": 11,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 111,
+    "fields": {
+      "username": "girls15white",
+      "email": "michaelpettigrew64@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 111,
+    "fields": {
+      "team": 111,
+      "description": "Manager: Michael Pettigrew",
+      "age": 11,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 112,
+    "fields": {
+      "username": "boys15black",
+      "email": "yg.a.suh@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 112,
+    "fields": {
+      "team": 112,
+      "description": "Manager: Yeongyo Anna Suh",
+      "age": 11,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 113,
+    "fields": {
+      "username": "boys14red",
+      "email": "jacuebramwell@hotmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 113,
+    "fields": {
+      "team": 113,
+      "description": "Manager: Jacque Bramwell",
+      "age": 12,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 114,
+    "fields": {
+      "username": "girls14red",
+      "email": "htania08@yahoo.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 114,
+    "fields": {
+      "team": 114,
+      "description": "Manager: Tania Ruiz",
+      "age": 12,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 115,
+    "fields": {
+      "username": "boys14white",
+      "email": "cmlarsen08@hotmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 115,
+    "fields": {
+      "team": 115,
+      "description": "Manager: Marisol Larsen",
+      "age": 12,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 116,
+    "fields": {
+      "username": "girls14white",
+      "email": "cassiemajestic@icloud.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 116,
+    "fields": {
+      "team": 116,
+      "description": "Manager: Cassie Majestic",
+      "age": 12,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 117,
+    "fields": {
+      "username": "boys14black",
+      "email": "rrobles_tesorero@yahoo.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 117,
+    "fields": {
+      "team": 117,
+      "description": "Manager: Rosanna Tesorero",
+      "age": 12,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 118,
+    "fields": {
+      "username": "boys13red",
+      "email": "harper.abbie@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 118,
+    "fields": {
+      "team": 118,
+      "description": "Manager: Abbie Harper",
+      "age": 13,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 119,
+    "fields": {
+      "username": "girls13red",
+      "email": "imoyik18@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 119,
+    "fields": {
+      "team": 119,
+      "description": "Manager: Kiyomi Morales",
+      "age": 13,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 120,
+    "fields": {
+      "username": "boys13white",
+      "email": "jessjj@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 120,
+    "fields": {
+      "team": 120,
+      "description": "Manager: Jessica Tomlinson",
+      "age": 13,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 121,
+    "fields": {
+      "username": "girls13white",
+      "email": "Ine85@yahoo.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 121,
+    "fields": {
+      "team": 121,
+      "description": "Manager: Inesita Arce",
+      "age": 13,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 122,
+    "fields": {
+      "username": "boys12red",
+      "email": "skspurr@hotmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 122,
+    "fields": {
+      "team": 122,
+      "description": "Manager: Sarah Robertson",
+      "age": 14,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 123,
+    "fields": {
+      "username": "girls12red",
+      "email": "serenadunlap09@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 123,
+    "fields": {
+      "team": 123,
+      "description": "Manager: Serena Dunlap",
+      "age": 14,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 124,
+    "fields": {
+      "username": "boys12white",
+      "email": "tiffanydu08@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 124,
+    "fields": {
+      "team": 124,
+      "description": "Manager: Tiffany Du",
+      "age": 14,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 125,
+    "fields": {
+      "username": "girls12white",
+      "email": "nlvincent78@yahoo.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 125,
+    "fields": {
+      "team": 125,
+      "description": "Manager: Nicole Dozier",
+      "age": 14,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 126,
+    "fields": {
+      "username": "boys12black",
+      "email": "Felipe@afc360.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 126,
+    "fields": {
+      "team": 126,
+      "description": "Manager: Felipe Olvera / Emily Huelsermann",
+      "age": 14,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 127,
+    "fields": {
+      "username": "boys11red",
+      "email": "danyjmendez@outlook.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 127,
+    "fields": {
+      "team": 127,
+      "description": "Manager: Dany Mendez",
+      "age": 15,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 128,
+    "fields": {
+      "username": "girls11red",
+      "email": "sjheringer@yahoo.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 128,
+    "fields": {
+      "team": 128,
+      "description": "Manager: Sarah Haringer",
+      "age": 15,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 129,
+    "fields": {
+      "username": "boys11white",
+      "email": "maipahniaher@yahoo.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 129,
+    "fields": {
+      "team": 129,
+      "description": "Manager: Mai Her",
+      "age": 15,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 130,
+    "fields": {
+      "username": "girls11white",
+      "email": "danielsilva916@yahoo.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 130,
+    "fields": {
+      "team": 130,
+      "description": "Manager: Dan Silva / Marisa Silva",
+      "age": 15,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 131,
+    "fields": {
+      "username": "boys11black",
+      "email": "k9olaf@hotmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 131,
+    "fields": {
+      "team": 131,
+      "description": "Manager: Erika Montano",
+      "age": 15,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 132,
+    "fields": {
+      "username": "boys10red",
+      "email": "gtornabene@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 132,
+    "fields": {
+      "team": 132,
+      "description": "Manager: Gretchen Tornabene",
+      "age": 16,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 133,
+    "fields": {
+      "username": "girls10red",
+      "email": "schivojax916@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 133,
+    "fields": {
+      "team": 133,
+      "description": "Manager: Jackie Guerrero",
+      "age": 16,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 134,
+    "fields": {
+      "username": "boys10white",
+      "email": "priscillamagano1@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 134,
+    "fields": {
+      "team": 134,
+      "description": "Manager: Priscilla Magano",
+      "age": 16,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 135,
+    "fields": {
+      "username": "girls10white",
+      "email": "jamcnearney@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 135,
+    "fields": {
+      "team": 135,
+      "description": "Manager: Jim McNearney",
+      "age": 16,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 136,
+    "fields": {
+      "username": "boys09red",
+      "email": "avilakique@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 136,
+    "fields": {
+      "team": 136,
+      "description": "Manager: Luis Avila",
+      "age": 17,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 137,
+    "fields": {
+      "username": "girls09red",
+      "email": "m.macniven@yahoo.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 137,
+    "fields": {
+      "team": 137,
+      "description": "Manager: Mary MacNiven",
+      "age": 17,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 138,
+    "fields": {
+      "username": "boys09white",
+      "email": "c25jennifer85@aol.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 138,
+    "fields": {
+      "team": 138,
+      "description": "Manager: Jennifer Aguilar",
+      "age": 17,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 139,
+    "fields": {
+      "username": "girls09white",
+      "email": "michristhrel13@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 139,
+    "fields": {
+      "team": 139,
+      "description": "Manager: Michele Threlkel",
+      "age": 17,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 140,
+    "fields": {
+      "username": "boys09black",
+      "email": "hscopazzi@hotmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 140,
+    "fields": {
+      "team": 140,
+      "description": "Manager: Harmony Scopazzi",
+      "age": 17,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 141,
+    "fields": {
+      "username": "boys08red",
+      "email": "jmecarroll5@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 141,
+    "fields": {
+      "team": 141,
+      "description": "Manager: Jaime Carroll",
+      "age": 19,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 142,
+    "fields": {
+      "username": "girls08red",
+      "email": "ljtocco@yahoo.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 142,
+    "fields": {
+      "team": 142,
+      "description": "Manager: Laura Mariani",
+      "age": 19,
+      "gender": "girls"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 143,
+    "fields": {
+      "username": "boys08white",
+      "email": "tntcarroll@gmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 143,
+    "fields": {
+      "team": 143,
+      "description": "Manager: Tom Carroll",
+      "age": 19,
+      "gender": "boys"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 144,
+    "fields": {
+      "username": "girls08white",
+      "email": "ypetrof@hotmail.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2025-06-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "reservations.teamprofile",
+    "pk": 144,
+    "fields": {
+      "team": 144,
+      "description": "Manager: Yolanta Petrofsky",
+      "age": 19,
+      "gender": "girls"
+    }
+  }
+]

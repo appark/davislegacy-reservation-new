@@ -1,0 +1,103 @@
+{% extends 'reservations/layouts/default.html' %}
+{% load static %}
+{% load form_extras %}
+
+{% block title %}Account Settings | {% endblock %}
+
+{% block breadcrumbs %}
+<ul class="breadcrumb">
+    {% if is_superuser %}
+        <li>Admin</li>
+        <li><a href="{% url 'account' %}" class="active">Account Settings</a></li>
+    {% else %}
+        <li>My Team</li>
+        <li><a href="{% url 'account' %}" class="active">Account Settings</a></li>
+    {% endif %}
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">Account Settings</div>
+            </div>
+            <div class="panel-body panel-action-list">
+                <div class="row">
+                    <div class="col-md-9">
+                        {% if request.user.email %}
+                            <p class="action-text">Your email is currently set as <strong><a href="mailto:{{ request.user.email }}">{{ request.user.email }}</a></strong></p>
+                        {% else %}
+                            <p class="action-text">You currently do not have an email set.</p>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-3 action-btn">
+                        <button class="btn btn-default btn-block action-btn" data-toggle="modal" data-target="#modal-edit-email"><i class="fa fa-fw fa-envelope-o"></i> <span class="text">Change<span class="mobile-text"> Email</span></span></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">
+                        <p class="action-text">Your password is currently set.</p>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-default btn-block action-btn" data-toggle="modal" data-target="#modal-edit-password"><i class="fa fa-fw fa-key"></i> <span class="text">Change<span class="mobile-text"> Password</span></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block modals %}
+<div class="modal fade stick-up disable-scroll" id="modal-edit-email" tabindex="-1" role="dialog" aria-labelledby="Change Email Dialog" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content-wrapper">
+            <div class="modal-content">
+                <div class="modal-header clearfix text-left">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i></button>
+                    <h5>Change Email</h5>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{% url 'change_email' %}">
+                        {% csrf_token %}
+                        {% emailField email_change_form.new_email1 required=True label="New Email" placeholder="hello@example.com" %}
+                        {% emailField email_change_form.new_email2 required=True label="Confirm New Email" placeholder="hello@example.com" %}
+                        <div class="row">
+                            <div class="col-md-offset-10 col-md-2">
+                                <button type="submit" class="btn btn-block btn-primary">Change</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade stick-up disable-scroll" id="modal-edit-password" tabindex="-1" role="dialog" aria-labelledby="Change Password Dialog" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content-wrapper">
+            <div class="modal-content">
+                <div class="modal-header clearfix text-left">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i></button>
+                    <h5>Change Password</h5>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{% url 'change_password' %}">
+                        {% csrf_token %}
+                        {% passwordField password_change_form.old_password required=True label="Old Password" %}
+                        {% passwordField password_change_form.new_password1 required=True label="New Password" %}
+                        {% passwordField password_change_form.new_password2 required=True label="Confirm New Password" %}
+                        <div class="row">
+                            <div class="col-md-offset-10 col-md-2">
+                                <button type="submit" class="btn btn-block btn-primary">Change</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'registration/default.html' %}
+
+{% block title %}Login | {% endblock %}
+
+{% block addJS %}
+{% if form.errors %}
+    <script>
+        $(document).ready(function() {
+            createMessage("danger", "Your username and password didn't match! Please try again.", { "target": ".login-container" });
+        });
+    </script>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">Login To Your Account</div>
+    </div>
+    <div class="panel-body">
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div class="form-group form-group-default">
+                <label>Username</label>
+                <input type="text" class="form-control" name="{{ form.username.name }}" value="{{ form.username.value|default_if_none:"" }}" placeholder="Username" required autofocus>
+            </div>
+            <div class="form-group form-group-default">
+                <label>Password</label>
+                <input type="password" class="form-control" name="{{ form.password.name }}" value="{{ form.password.value|default_if_none:"" }}" placeholder="Password" required>
+            </div>
+            <hr>
+            <a href="{% url 'password_reset' %}" class="btn btn-default" data-toggle="tooltip" title="Forgot Password?"><i class="fa fa-question-circle"></i></a>
+            <div class="pull-right">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+            <div class="clearfix"></div>
+        </form>
+    </div>
+</div>
+{% endblock %}

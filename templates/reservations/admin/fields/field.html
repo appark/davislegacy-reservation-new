@@ -1,0 +1,195 @@
+{% extends 'reservations/layouts/default.html' %}
+{% load static %}
+{% load form_extras %}
+
+{% block title %}Fields | {% endblock %}
+
+{% block addCSS %}
+    <link href="{% static 'assets/plugins/jquery-datatable/media/css/jquery.dataTables.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/jquery-datatable/extensions/FixedColumns/css/dataTables.fixedColumns.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/datatables-responsive/css/datatables.responsive.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/bootstrap-select2/select2.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block addJS %}
+    <script src="{% static 'assets/plugins/jquery-datatable/media/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/jquery-datatable/extensions/TableTools/js/dataTables.tableTools.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/jquery-datatable/extensions/Bootstrap/jquery-datatable-bootstrap.js' %}"></script>
+    <script src="{% static 'assets/plugins/datatables-responsive/js/datatables.responsive.js' %}"></script>
+    <script src="{% static 'assets/plugins/datatables-responsive/js/lodash.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/jquery-datatable/plugins/natural/natural.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+    <script src="{% static 'assets/plugins/jquery-datatable/plugins/moment/datetime-moment.js' %}"></script>
+    <script src="{% static 'assets/plugins/bootstrap-select2/select2.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/bootstrap-timepicker/bootstrap-timepicker.min.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+            {% if not current_field %}
+                $("#modal-new-field").modal({
+                    "show": true
+                });
+                $("#modal-new-field").on("hide.bs.modal", function(event) {
+                    window.location.href = "{% url 'all_reservations' %}";
+                });
+            {% endif %}
+            $("#start-time").focus(function() {
+                $(this).timepicker("showWidget");
+            });
+            $("#end-time").focus(function() {
+                $(this).timepicker("showWidget");
+            });
+
+            var settings = {};
+            settings["emptyTable"] = "There are currently no timeslots.";
+            settings["dom"] = "t";
+            settings["columnDefs"] = [
+                { "orderable": false, "targets": [ 1 ] }
+            ];
+
+            $("#timeslots").createDataTable(settings);
+        });
+    </script>
+{% endblock %}
+
+{% block breadcrumbs %}
+<ul class="breadcrumb">
+    <li>Admin</li>
+    <li>Fields</li>
+    {% if current_field %}<li><a href="{% url 'field' field_id=current_field.pk %}" class="active">{{ current_field }}</a></li>{% endif %}
+</ul>
+<div class="pull-right">
+    <button class="btn btn-default m-t-10" data-toggle="modal" data-target="#modal-new-field"><i class="fa fa-plus-circle"></i><span class="hidden-xs"> New Field</span></button>
+</div>
+{% endblock %}
+
+{% block content %}
+{% if current_field %}
+    <div class="row">
+        {% include 'reservations/admin/fields/sidebar.html' %}
+        <div class="col-sm-9">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">{{ current_field }} Timeslots</div>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table id="timeslots" class="table table-striped table-condensed table-action-1">
+                            <thead>
+                                <tr>
+                                    <th>Timeslot</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for timeslot in current_timeslots %}
+                                    <tr>
+                                        <td>{{ timeslot.start_time|time:"g:i A" }} - {{ timeslot.end_time|time:"g:i A" }}</td>
+                                        <td><a href="{% url 'field_remove_timeslot' field_id=current_field.pk timeslot_id=timeslot.pk %}" class="btn btn-danger confirm" data-delete="{{ timeslot.start_time }} - {{ timeslot.end_time }}" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr>
+                    <form method="post" action="{% url 'field_add_timeslot' field_id=current_field.pk %}">
+                        {% csrf_token %}
+                        <div class="input-group input-daterange">
+                            <div><input id="start-time" type="text" class="form-control" name="{{ timeslot_form.start_time.name }}" placeholder="Start Time (HH:MM AM/PM)" required></div>
+                            <span class="input-group-addon">to</span>
+                            <div><input id="end-time" type="text" class="form-control" name="{{ timeslot_form.end_time.name }}" placeholder="End Time (HH:MM AM/PM)" required></div>
+                            <span class="input-group-btn"><button type="submit" class="btn btn-default" data-toggle="tooltip" title="Add Timeslot"><i class="fa fa-plus-circle"></i></button></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">Teams That Can Use {{ current_field }}</div>
+                </div>
+                <div class="panel-body">
+                    <form method="post" action="{% url 'api_field_modify_teams' %}" class="form-dynamic-select" data-success="{{ current_field }}">
+                        {% csrf_token %}
+                        <input type="hidden" name="{{ modify_teams_form.field.name }}" value="{{ current_field.pk }}">
+                        {% dynamicSelectField modify_teams_form.teams value=current_teams placeholder="This field isn't usable by any teams. Click here to add some." %}
+                    </form>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">More Settings</div>
+                </div>
+                <div class="panel-body panel-action-list">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <p class="action-text">Change Field Name</p>
+                        </div>
+                        <div class="col-md-3 action-btn">
+                            <button class="btn btn-default btn-block action-btn" data-toggle="modal" data-target="#modal-edit-field"><i class="fa fa-fw fa-pencil"></i> <span class="text">Change<span class="mobile-text"> Field Name</span></span></button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <p class="action-text">Delete Field</p>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="{% url 'delete_field' field_id=current_field.pk %}" class="btn btn-danger btn-block action-btn confirm" data-delete="{{ current_field.name }}"><i class="fa fa-fw fa-trash"></i> <span class="text">Delete<span class="mobile-text"> Field</span></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}
+
+{% block modals %}
+<div class="modal fade stick-up disable-scroll" id="modal-new-field" tabindex="-1" role="dialog" aria-labelledby="New Field Dialog" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content-wrapper">
+            <div class="modal-content">
+                <div class="modal-header clearfix text-left">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i></button>
+                    <h5>Add a New Field</h5>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{% url 'add_field' %}">
+                        {% csrf_token %}
+                        {% textField field_form.name required=True label="Field Name" %}
+                        <div class="row">
+                            <div class="col-md-offset-10 col-md-2">
+                                <button type="submit" class="btn btn-block btn-primary">Create</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% if current_field %}
+    <div class="modal fade stick-up disable-scroll" id="modal-edit-field" tabindex="-1" role="dialog" aria-labelledby="Change Field Name Dialog" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content-wrapper">
+                <div class="modal-content">
+                    <div class="modal-header clearfix text-left">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i></button>
+                        <h5>Change Field Name</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="{% url 'change_field_name' field_id=current_field.pk %}">
+                            {% csrf_token %}
+                            {% textField field_form.name required=True label="Field Name" value=current_field %}
+                            <div class="row">
+                                <div class="col-md-offset-10 col-md-2">
+                                    <button type="submit" class="btn btn-block btn-primary">Rename</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

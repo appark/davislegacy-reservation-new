@@ -1,0 +1,96 @@
+<div class="modal fade slide-right disable-scroll details-sidebar" id="details-sidebar" tabindex="-1" role="dialog" aria-labelledby="Details Dialog" aria-hidden="false">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content-wrapper">
+            <div class="modal-content">
+                <div class="modal-header clearfix text-left">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i></button>
+                </div>
+                <div class="modal-body details-sidebar-wrapper">
+                    <div id="reservation-details">
+                        <h4 id="resv-title"></h4>
+                        <i class="fa fa-fw fa-clock-o"></i> <span id="resv-start-time"></span> to <span id="resv-end-time"></span>
+                        <div class="detail-wrapper">
+                            <div class="detail">
+                                <h6>Game Number</h6>
+                                <p id="resv-number"></p>
+                            </div>
+                            <div class="detail">
+                                <h6>Game Opponent</h6>
+                                <p id="resv-opponent"></p>
+                            </div>
+                            <div class="detail">
+                                <h6>Gametype</h6>
+                                <p id="resv-type"></p>
+                            </div>
+                            <div class="detail">
+                                <h6>Location</h6>
+                                <p id="resv-location"></p>
+                            </div>
+                            <div class="detail">
+                                <h6>Date</h6>
+                                <p id="resv-date"></p>
+                            </div>
+                            <div class="detail">
+                                <h6>Organizer's Email</h6>
+                                <p id="resv-email"><a href="#">hello@example.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tournament-details">
+                        <h4 id="tour-title"></h4>
+                        <div class="detail-wrapper">
+                            <div class="detail">
+                                <h6>Gametype</h6>
+                                <p id="tour-type"></p>
+                            </div>
+                            <div class="detail">
+                                <h6>Locations</h6>
+                                <p id="tour-locations"></p>
+                            </div>
+                            <div class="detail">
+                                <h6>Start Date</h6>
+                                <p id="tour-start-date"></p>
+                            </div>
+                            <div class="detail">
+                                <h6>End Date</h6>
+                                <p id="tour-end-date"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <p><a id="permalink" href="#"><i class="fa fa-fw fa-link"></i> Permalink</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade stick-up disable-scroll" id="modal-export-range" tabindex="-1" role="dialog" aria-labelledby="Choose Export Date Range" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content-wrapper">
+            <div class="modal-content">
+                <div class="modal-header clearfix text-left">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i></button>
+                    <h5>Choose a Custom Export Date Range</h5>
+                </div>
+                <div class="modal-body">
+                    <form method="get" action="{% url 'get_csv' %}">
+                        <div class="row">
+                            <div class="form-group form-group-default">
+                                <label>Start Date</label>
+                                <input type="text" name="start_date" class="form-control" placeholder="MM/DD/YYYY" required data-provide="datepicker" data-date-autoclose="true" data-date-today-highlight="true">
+                            </div>
+                            <div class="form-group form-group-default">
+                                <label>End Date</label>
+                                <input type="text" name="end_date" class="form-control" placeholder="MM/DD/YYYY" required data-provide="datepicker" data-date-autoclose="true" data-date-today-highlight="true">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-9 col-md-3">
+                                    <button id="export-range-btn" type="submit" class="btn btn-block btn-primary">Download</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
