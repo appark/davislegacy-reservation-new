@@ -104,6 +104,11 @@ EMAIL_HOST_PASSWORD=<app-password>
 - **Admin Username**: `admin`
 - **Admin Password**: `changeme123` ⚠️ **CHANGE IMMEDIATELY**
 
+### Team Login Credentials
+- **All Team Password**: `DLSC2025`
+- **Team Usernames**: Based on team names (e.g., `17gwhite`, `12bred`, `09bblack`)
+- **Total Teams**: 45 teams imported from CSV data
+
 ## 📧 Email Notifications
 
 ### Automatic Email Triggers
