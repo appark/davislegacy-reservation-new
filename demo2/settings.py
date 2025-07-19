@@ -14,10 +14,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-oo1@wmf74nb4t(4klqa##y%=t*@9u4put8#6_)-jwc&jjsgrbh'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-oo1@wmf74nb4t(4klqa##y%=t*@9u4put8#6_)-jwc&jjsgrbh')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
 ALLOWED_HOSTS = ['dev.davislegacysoccer.org', 'localhost', '127.0.0.1']
 
@@ -144,8 +144,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'reservation@davislegacysoccer.org'
-EMAIL_HOST_PASSWORD = 'qsspoldzbroodlgj'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'reservation@davislegacysoccer.org')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
 SERVER_EMAIL = 'reservation@davislegacysoccer.org'
 EMAIL_SUBJECT_PREFIX = '[Davis Legacy Reservation System] '
 
@@ -167,14 +167,14 @@ TIME_INPUT_FORMATS = [
 # Django 5.2 CSRF Configuration for AJAX
 CSRF_COOKIE_NAME = 'csrftoken'
 CSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'
-CSRF_COOKIE_HTTPONLY = False
+CSRF_COOKIE_HTTPONLY = True  # Security: Prevent JS access to CSRF token
 CSRF_COOKIE_SAMESITE = 'Lax'
 CSRF_USE_SESSIONS = False
+CSRF_COOKIE_SECURE = not DEBUG  # Use secure cookies in production
 
 # Django 5.2+ Security Settings for Logout
 LOGOUT_REDIRECT_URL = '/'
-LOGOUT_ON_GET = False  # Enforce POST-only logout (Django 5.2+)
-LOGOUT_ON_GET = True
+LOGOUT_ON_GET = True  # Allow GET logout for user convenience
 
 # Match AWS Django 5.2.2 behavior
 USE_L10N = True
@@ -188,3 +188,76 @@ DATE_INPUT_FORMATS = [
     '%m-%d-%Y',      # 08-15-2025
     '%d-%m-%Y',      # 15-08-2025
 ]
+
+# Security Settings
+if not DEBUG:
+    # Production security settings
+    SECURE_SSL_REDIRECT = True
+    SECURE_HSTS_SECONDS = 31536000  # 1 year
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_BROWSER_XSS_FILTER = True
+    X_FRAME_OPTIONS = 'DENY'
+    SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
+    
+    # Session security
+    SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_SAMESITE = 'Lax'
+    SESSION_COOKIE_AGE = 3600  # 1 hour
+    
+    # Additional security
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Logging Configuration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': '/app/django.log',
+            'formatter': 'verbose',
+        },
+        'security': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': '/app/security.log',
+            'formatter': 'verbose',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file', 'console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'django.security': {
+            'handlers': ['security'],
+            'level': 'WARNING',
+            'propagate': False,
+        },
+        'reservations': {
+            'handlers': ['file', 'console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}
