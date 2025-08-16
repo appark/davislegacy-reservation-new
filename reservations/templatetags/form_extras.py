@@ -8,7 +8,12 @@ def get_field_context(field, *args, **kwargs):
     label = kwargs.pop('label', field.label)
     placeholder = kwargs.pop('placeholder', None)
 
-    value = kwargs.pop('value', field.value)
+    # Get the field value - for BoundField, use the value() method
+    if hasattr(field, 'value') and callable(field.value):
+        default_value = field.value()
+    else:
+        default_value = getattr(field.field, 'initial', None)
+    value = kwargs.pop('value', default_value)
 
     poptext = kwargs.pop('poptext', None)
 
@@ -48,6 +53,9 @@ def password_field(field, *args, **kwargs):
 @register.inclusion_tag('reservations/layouts/tags/date_field.html', name='dateField')
 def date_field(field, *args, **kwargs):
     context = get_field_context(field, *args, **kwargs)
+    # Format date value if it's a date object
+    if context['value'] and hasattr(context['value'], 'strftime'):
+        context['value'] = context['value'].strftime('%m/%d/%Y')
     return context
 
 @register.inclusion_tag('reservations/layouts/tags/select_field.html', name='selectField')

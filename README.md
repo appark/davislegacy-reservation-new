@@ -16,7 +16,7 @@ This reservation system allows soccer teams to:
 ### Prerequisites
 - Docker and Docker Compose
 - Git
-- Access to dev.davislegacysoccer.org domain
+- Access to reservations.davislegacysoccer.org domain (production) or dev.davislegacysoccer.org (development)
 
 ### Setup
 
@@ -67,8 +67,8 @@ DB_HOST=db
 DB_PORT=5432
 
 # Domain Configuration
-ALLOWED_HOSTS=dev.davislegacysoccer.org,localhost,127.0.0.1
-CSRF_TRUSTED_ORIGINS=https://dev.davislegacysoccer.org,https://localhost
+ALLOWED_HOSTS=reservations.davislegacysoccer.org,dev.davislegacysoccer.org,localhost,127.0.0.1
+CSRF_TRUSTED_ORIGINS=https://reservations.davislegacysoccer.org,https://dev.davislegacysoccer.org,https://localhost
 
 # Email (Optional)
 EMAIL_HOST=smtp.gmail.com
@@ -107,7 +107,7 @@ EMAIL_HOST_PASSWORD=<app-password>
 ### Team Login Credentials
 - **All Team Password**: `DLSC2025`
 - **Team Usernames**: Based on team names (e.g., `17gwhite`, `12bred`, `09bblack`)
-- **Total Teams**: 45 teams imported from CSV data
+- **Total Teams**: 46 teams imported from CSV data (including missing 11BWhite team)
 
 ## 📧 Email Notifications
 
@@ -210,6 +210,26 @@ services:
 
 ## 🌐 Deployment
 
+### Domain Configuration
+
+This system is configured to handle multiple domains:
+
+- **Production**: `reservations.davislegacysoccer.org` - Main production site
+- **Development**: `dev.davislegacysoccer.org` - Legacy/development site
+
+#### Domain Swap History
+On July 19, 2025, the domains were swapped using a zero-downtime approach:
+- The new Django application was moved from `dev.davislegacysoccer.org` to `reservations.davislegacysoccer.org`
+- The legacy application was moved from `reservations.davislegacysoccer.org` to `dev.davislegacysoccer.org`
+
+The swap was achieved by:
+1. Adding both domains to the new site's Traefik configuration
+2. Testing the new site on the production domain
+3. Removing the old site from the production domain
+4. Updating the old site to use the development domain
+
+This ensures users can access the updated reservation system at the primary domain while maintaining the legacy system for development purposes.
+
 ### Production Checklist
 - [ ] Set `DEBUG=False` in `.env`
 - [ ] Generate new `SECRET_KEY`
@@ -222,7 +242,7 @@ services:
 ### Traefik Integration
 The system includes Traefik labels for:
 - Automatic HTTPS with Let's Encrypt
-- Domain routing for dev.davislegacysoccer.org
+- Domain routing for reservations.davislegacysoccer.org (production) and dev.davislegacysoccer.org (development)
 - Security headers and middleware
 
 ## 🛠️ Development
@@ -267,7 +287,7 @@ reservation-new/
 
 ## 📊 System Stats
 
-- **Teams**: 42 active soccer teams
+- **Teams**: 46 active soccer teams
 - **Fields**: 11 available soccer fields
 - **Time Slots**: 31 bookable time periods
 - **Tournaments**: 18 configured tournaments
@@ -325,7 +345,11 @@ For technical support or questions:
 
 ---
 
-**Last Updated**: July 2025  
-**System Status**: ✅ Production Ready with Enhanced Security
+**Last Updated**: July 19, 2025  
+**System Status**: ✅ Production Ready - Live on reservations.davislegacysoccer.org
 **Security Score**: 8/10 (Critical vulnerabilities resolved)
-**Recent Changes**: Hardcoded credentials removed, security headers added, email documentation completed
+**Recent Changes**: 
+- Domain swap completed (new site now on production domain)
+- Missing 11BWhite team added (46 teams total)
+- Field assignments implemented for all teams
+- Zero-downtime deployment achieved

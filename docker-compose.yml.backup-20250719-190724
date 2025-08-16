@@ -41,11 +41,11 @@ services:
       traefik.enable: true
       traefik.http.routers.reservation-new-http.entrypoints: web
       traefik.http.routers.reservation-new-http.middlewares: globalHeaders@file,redirect-to-https,gzip
-      traefik.http.routers.reservation-new-http.rule: Host(`reservations.davislegacysoccer.org`)
+      traefik.http.routers.reservation-new-http.rule: Host(`dev.davislegacysoccer.org`) || Host(`reservations.davislegacysoccer.org`)
       traefik.http.routers.reservation-new-http.service: reservation-new
       traefik.http.routers.reservation-new.entrypoints: websecure
       traefik.http.routers.reservation-new.middlewares: globalHeaders@file,secureHeaders@file
-      traefik.http.routers.reservation-new.rule: Host(`reservations.davislegacysoccer.org`)
+      traefik.http.routers.reservation-new.rule: Host(`dev.davislegacysoccer.org`) || Host(`reservations.davislegacysoccer.org`)
       traefik.http.routers.reservation-new.service: reservation-new
       traefik.http.routers.reservation-new.tls.certresolver: cfdns
       traefik.http.routers.reservation-new.tls.options: securetls@file

@@ -48,7 +48,13 @@
                     {% csrf_token %}
 
                     {% if is_team %}
-                        {% selectField form.team required=True label="Team" extras="disabled" %}
+                        <div class="form-group">
+                            <label class="form-label">Team <span class="required">*</span></label>
+                            <div class="controls">
+                                <input type="text" class="form-control" value="{{ request.user.username }}" readonly>
+                                <input type="hidden" name="team" value="{{ request.user.pk }}">
+                            </div>
+                        </div>
                     {% else %}
                         {% selectField form.team required=True label="Team" %}
                     {% endif %}

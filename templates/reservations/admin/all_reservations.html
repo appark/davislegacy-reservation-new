@@ -121,7 +121,9 @@
                                     <td>
                                         <a href="{% url 'approve_reservation' reservation_id=reservation.pk %}" class="btn btn-success" data-toggle="tooltip" title="Approve"><i class="fa fa-check-circle"></i></a>
                                         <a href="{% url 'edit_reservation' reservation_id=reservation.pk %}?next={% url 'all_reservations' %}" class="btn btn-primary" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                        {% if request.user.is_superuser %}
                                         <a href="{% url 'delete_reservation' reservation_id=reservation.pk %}" class="btn btn-danger confirm" data-delete="{{ reservation }}" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
+                                        {% endif %}
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -168,7 +170,9 @@
                                     <td>
                                         <a href="{% url 'approve_reservation' reservation_id=reservation.pk %}" class="btn btn-success" data-toggle="tooltip" title="Unapprove"><i class="fa fa-times-circle"></i></a>
                                         <a href="{% url 'edit_reservation' reservation_id=reservation.pk %}?next={% url 'all_reservations' %}" class="btn btn-primary" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                        {% if request.user.is_superuser %}
                                         <a href="{% url 'delete_reservation' reservation_id=reservation.pk %}" class="btn btn-danger confirm" data-delete="{{ reservation }}" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
+                                        {% endif %}
                                     </td>
                                 </tr>
                             {% endfor %}

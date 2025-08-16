@@ -7,6 +7,19 @@
     <link href="{% static 'assets/plugins/jquery-datatable/media/css/jquery.dataTables.css' %}" rel="stylesheet">
     <link href="{% static 'assets/plugins/jquery-datatable/extensions/FixedColumns/css/dataTables.fixedColumns.min.css' %}" rel="stylesheet">
     <link href="{% static 'assets/plugins/datatables-responsive/css/datatables.responsive.css' %}" rel="stylesheet">
+    <style>
+        /* Fix tournament table - wider columns, no scroll */
+        .table-admin-tournaments th:nth-child(1),
+        .table-admin-tournaments td:nth-child(1) {
+            min-width: 300px !important;
+            white-space: nowrap !important;
+        }
+        .table-admin-tournaments th:nth-child(3),
+        .table-admin-tournaments td:nth-child(3) {
+            min-width: 250px !important;
+            white-space: nowrap !important;
+        }
+    </style>
 {% endblock %}
 
 {% block addJS %}

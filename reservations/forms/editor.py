@@ -1,10 +1,10 @@
 from django import forms
 from django.shortcuts import get_object_or_404
+from django.db.models import Q
 
 from reservations.utils import get_object_or_none
 from django.utils import timezone
 from datetime import datetime
-from django.db.models import Q
 
 from django.contrib.auth.models import User
 from reservations.models import Reservation, GameType, TimeSlot, Field, Tournament
@@ -19,10 +19,10 @@ class EditorStep1Form(forms.Form):
         'required': "Please give a game opponent!",
         'max_length': "The game opponent's name is too long. Try again!"
     })
-    gametype = forms.ModelChoiceField(queryset=GameType.objects.none(), error_messages={
+    gametype = forms.ModelChoiceField(queryset=GameType.objects.filter(active=True), error_messages={
         'required': "Please select a valid gametype!"
     })
-    team = forms.ModelChoiceField(queryset=User.objects.none(), required=False)
+    team = forms.ModelChoiceField(queryset=User.objects.filter(is_active=True, groups__name='Team'), required=False)
     date = forms.DateField(error_messages={
         'required': "Please give a date!",
         'invalid': "The date given was invalid. Try again!"
@@ -33,16 +33,18 @@ class EditorStep1Form(forms.Form):
         super(EditorStep1Form, self).__init__(*args, **kwargs)
 
         if self.user and not is_manager(self.user):
-            self.fields['team'].initial = self.user
+            self.fields['team'].initial = self.user.pk
 
     def populate_form(self, request):
         self.fields['game_number'].initial = request.session.get('resv_game_number', None)
         self.fields['game_opponent'].initial = request.session.get('resv_game_opponent', None)
 
         # Get the gametype if it was trashed
-        if request.session.get('resv_gametype', None):
-            self.fields['gametype'].queryset = GameType.objects.filter(Q(active=True) | Q(pk=request.session.get('resv_gametype')))
-            self.fields['gametype'].initial = get_object_or_none(GameType, pk=request.session.get('resv_gametype', -1))
+        resv_gametype = request.session.get('resv_gametype', None)
+        if resv_gametype:
+            self.fields['gametype'].queryset = GameType.objects.filter(Q(active=True) | Q(pk=resv_gametype))
+            # Set initial to the primary key, not the object
+            self.fields['gametype'].initial = resv_gametype
         else:
             self.fields['gametype'].queryset = GameType.objects.filter(active=True)
 
@@ -69,7 +71,8 @@ class EditorStep1Form(forms.Form):
                 self.fields['team'].queryset = User.objects.filter(is_active=True, groups__name='Team')
 
         if resv_team:
-            self.fields['team'].initial = get_object_or_none(User, pk=resv_team)
+            # Set initial to the primary key, not the object
+            self.fields['team'].initial = resv_team
 
         resv_date = request.session.get('resv_date', None)
         if resv_date:
@@ -110,8 +113,20 @@ class EditorStep2Form(forms.Form):
 
     # Whether they want a custom timeslot
     custom_timeslot = forms.BooleanField(required=False)
-    start_time = forms.TimeField(required=False)
-    end_time = forms.TimeField(required=False)
+    start_time = forms.TimeField(
+        required=False,
+        input_formats=['%I:%M %p', '%H:%M:%S', '%H:%M', '%I:%M:%S %p'],
+        error_messages={
+            'invalid': 'Enter a valid time in format HH:MM AM/PM'
+        }
+    )
+    end_time = forms.TimeField(
+        required=False,
+        input_formats=['%I:%M %p', '%H:%M:%S', '%H:%M', '%I:%M:%S %p'],
+        error_messages={
+            'invalid': 'Enter a valid time in format HH:MM AM/PM'
+        }
+    )
     field = forms.ChoiceField(choices=[], required=False)
 
     def __init__(self, *args, **kwargs):
@@ -192,7 +207,9 @@ class EditorStep2Form(forms.Form):
                 del self.timeslot_choices[field]
 
         # Restore initial values for timeslots, if they go back.
-        self.fields['timeslot'].initial = resv_timeslot
+        # Only set initial values if the form is not bound (no POST data)
+        if not self.is_bound:
+            self.fields['timeslot'].initial = resv_timeslot
 
         return True
 

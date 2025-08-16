@@ -16,6 +16,22 @@
     <script src="{% static 'assets/plugins/bootstrap-timepicker/bootstrap-timepicker.min.js' %}"></script>
     <script>
         $(document).ready(function() {
+            // Initialize timepickers with proper format
+            $("#start-time").timepicker({
+                showMeridian: true,
+                defaultTime: false,
+                minuteStep: 15,
+                showInputs: false,
+                template: 'dropdown'
+            });
+            $("#end-time").timepicker({
+                showMeridian: true,
+                defaultTime: false,
+                minuteStep: 15,
+                showInputs: false,
+                template: 'dropdown'
+            });
+            
             if($("#custom-timeslot-toggle").is(":checked")) {
                 $("#timeslots").hide(100);
             } else {
@@ -122,7 +138,7 @@
                                             {% textField form.start_time id="start-time" label="Start Time" placeholder="HH:MM AM/PM" group_extras="form-group-solo input-daterange" %}
                                         </div>
                                         <div class="col-sm-4">
-                                            {% textField form.end_time id="end-time" label="Start Time" placeholder="HH:MM AM/PM" group_extras="form-group-solo input-daterange" %}
+                                            {% textField form.end_time id="end-time" label="End Time" placeholder="HH:MM AM/PM" group_extras="form-group-solo input-daterange" %}
                                         </div>
                                     </div>
                                 </div>
